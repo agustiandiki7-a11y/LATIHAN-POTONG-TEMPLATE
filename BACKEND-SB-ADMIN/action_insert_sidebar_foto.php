@@ -1,0 +1,43 @@
+<?php
+include "connection.php";
+
+// Cek apakah ada file foto yang dikirim dari form tambah
+if (isset($_FILES['sidebar_foto']['name']) && $_FILES['sidebar_foto']['name'] != "") {
+
+    // Lokasi folder penyimpanan disamakan: sidebar_foto
+    $target_dir = __DIR__ . "/sidebar_foto/";
+
+    // Otomatis buat folder jika belum ada di laptop
+    if (!file_exists($target_dir)) {
+        mkdir($target_dir, 0777, true);
+    }
+
+    // Buat nama file unik menggunakan time()
+    $ext         = pathinfo($_FILES['sidebar_foto']['name'], PATHINFO_EXTENSION);
+    $vfoto       = time() . "." . $ext;
+    $target_file = $target_dir . $vfoto;
+
+    // Pindahkan foto ke folder sidebar_foto/
+    if (move_uploaded_file($_FILES['sidebar_foto']['tmp_name'], $target_file)) {
+
+        // Query INSERT ke tabel sidebar_foto
+        $sql = "INSERT INTO sidebar_foto (sidebar_foto) VALUES ('$vfoto')";
+        $sql_insert = mysqli_query($koneksi, $sql);
+
+        if ($sql_insert) {
+            header("Location: tabel_sidebar_foto.php");
+            exit();
+        } else {
+            echo "Gagal menyimpan ke database: " . mysqli_error($koneksi);
+        }
+
+    } else {
+        echo "Gagal mengunggah gambar ke folder target!";
+    }
+
+} else {
+    // Jika diakses tanpa submit foto
+    header("Location: form_sidebar_foto.php");
+    exit();
+}
+?>

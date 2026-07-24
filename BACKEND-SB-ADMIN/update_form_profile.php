@@ -1,28 +1,27 @@
 <?php
 include "connection.php";
 
-// Mengecek apakah id_profile ada di URL
-if (!isset($_GET['id_profile'])) {
-    header("Location: tabel_profile.php");
+// Mengecek apakah id_training ada di URL
+if (!isset($_GET['id_training']) || empty($_GET['id_training'])) {
+    header("Location: tabel_training.php"); // Sesuaikan nama file tabel training Anda
     exit;
 }
 
-// Mengambil id_profile dari tabel_profile.php
-$id_profile = $_GET['id_profile'];
+// Mengambil id_training dan me-escape dari SQL Injection
+$id_training = mysqli_real_escape_string($koneksi, $_GET['id_training']);
 
-// Mengambil data profile berdasarkan id_profile
+// Mengambil data training berdasarkan id_training
 $select_id = mysqli_query(
     $koneksi,
-    "SELECT * FROM profile WHERE id_profile='$id_profile'"
+    "SELECT * FROM training WHERE id_training='$id_training'"
 );
 
-
 // Mengubah hasil query menjadi object
-$profile = mysqli_fetch_object($select_id);
+$training = mysqli_fetch_object($select_id);
 
 // Jika data tidak ditemukan
-if (!$profile) {
-    die("Data profile tidak ditemukan");
+if (!$training) {
+    die("Data training tidak ditemukan");
 }
 ?>
 
@@ -49,116 +48,62 @@ if (!$profile) {
                 <div class="container-fluid">
 
                     <h1 class="h3 mb-4 text-gray-800">
-                        Update Profile
+                        Update Training
                     </h1>
 
-                    <form action="action_update_profile.php" method="POST">
+                    <form action="action_update_training.php" method="POST">
 
                         <!-- Hidden ID -->
                         <input
                             type="hidden"
-                            name="id_profile"
-                            value="<?php echo $profile->id_profile; ?>">
+                            name="id_training"
+                            value="<?php echo $training->id_training; ?>">
 
-                        <!-- Nama -->
+                        <!-- Nama Training -->
                         <div class="form-group">
-                            <label>Nama</label>
+                            <label>Nama Training</label>
 
                             <input
                                 type="text"
-                                name="nama"
+                                name="nama_training"
                                 class="form-control"
-                                value="<?php echo htmlspecialchars($profile->nama); ?>"
+                                value="<?php echo htmlspecialchars($training->nama_training); ?>"
                                 required>
                         </div>
 
-                        <!--overvew-->
+                        <!-- Tahun Training -->
                         <div class="form-group">
-                            <label>Nama</label>
+                            <label>Tahun</label>
 
                             <input
                                 type="text"
-                                name="nama"
+                                name="tahun_training"
                                 class="form-control"
-                                value="<?php echo htmlspecialchars($profile->nama); ?>"
+                                value="<?php echo htmlspecialchars($training->tahun_training); ?>"
                                 required>
                         </div>
 
-                        <!-- About -->
+                        <!-- Tempat Training -->
                         <div class="form-group">
-                            <label>About</label>
+                            <label>Tempat</label>
+
+                            <input
+                                type="text"
+                                name="tempat_training"
+                                class="form-control"
+                                value="<?php echo htmlspecialchars($training->tempat_training); ?>"
+                                required>
+                        </div>
+
+                        <!-- Deskripsi -->
+                        <div class="form-group">
+                            <label>Deskripsi</label>
 
                             <textarea
-                                name="about"
+                                name="deskripsi"
                                 class="form-control"
                                 rows="5"
-                                required><?php echo htmlspecialchars($profile->about); ?></textarea>
-                        </div>
-
-                        <!-- Website -->
-                        <div class="form-group">
-                            <label>Website</label>
-
-                            <input
-                                type="text"
-                                name="website"
-                                class="form-control"
-                                value="<?php echo htmlspecialchars($profile->website); ?>">
-                        </div>
-
-                        <!-- Phone -->
-                        <div class="form-group">
-                            <label>Phone</label>
-
-                            <input
-                                type="text"
-                                name="phone"
-                                class="form-control"
-                                value="<?php echo htmlspecialchars($profile->phone); ?>">
-                        </div>
-
-                        <!-- Email -->
-                        <div class="form-group">
-                            <label>Email</label>
-
-                            <input
-                                type="email"
-                                name="email"
-                                class="form-control"
-                                value="<?php echo htmlspecialchars($profile->email); ?>"
-                                required>
-                        </div>
-
-                        <!-- Address -->
-                        <div class="form-group">
-                            <label>Address</label>
-
-                            <textarea
-                                name="address"
-                                class="form-control"
-                                rows="4"><?php echo htmlspecialchars($profile->address); ?></textarea>
-                        </div>
-
-                        <!-- LinkedIn -->
-                        <div class="form-group">
-                            <label>LinkedIn</label>
-
-                            <input
-                                type="text"
-                                name="linkedin"
-                                class="form-control"
-                                value="<?php echo htmlspecialchars($profile->linkedin); ?>">
-                        </div>
-
-                        <!-- Nationality -->
-                        <div class="form-group">
-                            <label>Nationality</label>
-
-                            <input
-                                type="text"
-                                name="nationalty"
-                                class="form-control"
-                                value="<?php echo htmlspecialchars($profile->nationalty); ?>">
+                                required><?php echo htmlspecialchars($training->deskripsi); ?></textarea>
                         </div>
 
                         <!-- Tombol Update -->
@@ -172,7 +117,7 @@ if (!$profile) {
 
                         <!-- Tombol Kembali -->
                         <a
-                            href="tabel_profile.php"
+                            href="tabel_training.php"
                             class="btn btn-secondary">
 
                             Kembali
