@@ -112,9 +112,8 @@ $select_profile = mysqli_query($koneksi, "SELECT * FROM profile");
 
                                             <!-- Tombol Update -->
                                             <!-- Mengirim id_profile ke update_profile.php -->
-
-                                            <a href="update_form_profile.php?id_profile=<?php echo $tampil->id_profile; ?>"
-                                                class="btn btn-success">
+                                            <!-- Tombol Update Profile yang Benar -->
+                                            <a href="update_form_profile.php?id_profile=<?php echo $tampil->id_profile; ?>" class="btn btn-success btn-sm">
                                                 Update
                                             </a>
 

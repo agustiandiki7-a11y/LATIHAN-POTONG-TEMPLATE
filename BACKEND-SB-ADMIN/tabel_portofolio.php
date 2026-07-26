@@ -52,9 +52,9 @@ $select_portofolio = mysqli_query($koneksi, "SELECT * FROM portofolio ORDER BY i
                             <thead>
                                 <tr>
                                     <th scope="col">Portofolio</th>
-                                    <th scope="col">Link</th>
-                                    <th scope="col">Deskripsi</th>
                                     <th scope="col">Img</th>
+                                    <th scope="col">Url</th>
+                                    <th scope="col">Deskripsi</th>
                                     <th scope="col">Jenis</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -72,14 +72,23 @@ $select_portofolio = mysqli_query($koneksi, "SELECT * FROM portofolio ORDER BY i
                                         <td>
                                             <?php echo $tampil->judul_portofolio; ?>
                                         </td>
+                                        
+                                        <!-- KOLOM GAMBAR (SUDAH DIPERBAIKI) -->
                                         <td>
-                                            <?php echo $tampil->link; ?>
+                                            <?php if (!empty($tampil->img) && file_exists("foto/" . $tampil->img)) : ?>
+                                                <img src="foto/<?php echo $tampil->img; ?>" width="100" class="img-thumbnail" alt="Portofolio">
+                                            <?php else : ?>
+                                                <small class="text-danger">Gambar tidak ditemukan (<?= $tampil->img; ?>)</small>
+                                            <?php endif; ?>
+                                        </td>
+
+                                        <td>
+                                            <a href="<?php echo $tampil->link; ?>" target="_blank">
+                                                <?php echo $tampil->link; ?>
+                                            </a>
                                         </td>
                                         <td>
                                             <?php echo $tampil->deskripsi; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $tampil->img; ?>
                                         </td>
                                         <td>
                                             <?php echo $tampil->jenis; ?>
@@ -90,14 +99,14 @@ $select_portofolio = mysqli_query($koneksi, "SELECT * FROM portofolio ORDER BY i
 
                                             <!-- Tombol Delete -->
                                             <a href="delete_portofolio.php?id_portofolio=<?= $tampil->id_portofolio; ?>"
-                                                class="btn btn-danger"
+                                                class="btn btn-danger btn-sm mb-1"
                                                 onclick="return confirm('Yakin ingin menghapus data ini?')">
                                                 Delete
                                             </a>
 
                                             <!-- Tombol Update -->
                                             <a href="update_form_portofolio.php?id_portofolio=<?php echo $tampil->id_portofolio; ?>"
-                                                class="btn btn-success">
+                                                class="btn btn-success btn-sm">
                                                 Update
                                             </a>
 
