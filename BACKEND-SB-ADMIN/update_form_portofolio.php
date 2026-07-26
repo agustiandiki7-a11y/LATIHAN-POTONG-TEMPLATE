@@ -1,11 +1,17 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul portofolio dan terhubung dengan tabel `portofolio` di database.
+
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
 //menyimpan sementara id_portofolio dari awal update hingga akhir update table_portofolio 
 //sebelum di eksekusi ke bawh berikut ini
 
 //$_get portofolio menerima update ke table portofolio.php
+// Menerima ID unik portofolio yang dikirim melalui URL, biasanya dari tombol Update atau Delete pada halaman tabel.
 if (!isset($_GET['id_portofolio']) || empty($_GET['id_portofolio'])) {
+    // Setelah proses selesai, pengguna diarahkan ke ` tabel_portofolio.php` agar hasil terbaru dapat dilihat.
     header("Location: tabel_portofolio.php");
     exit();
 }
@@ -13,10 +19,13 @@ if (!isset($_GET['id_portofolio']) || empty($_GET['id_portofolio'])) {
 
 //fungsi untukk menampilkan isi tabel mengunakan  mysqli fetch object
 //selanjutnya menuju form bawah untuk menanmpilkan setiap data
+// Menerima ID unik portofolio yang dikirim melalui URL, biasanya dari tombol Update atau Delete pada halaman tabel.
 $id_portofolio = mysqli_real_escape_string($koneksi, $_GET['id_portofolio']);
 
 //menampilkan data yg dapat di l=kirim dari tompol update portofolio 
+// Query SELECT mengambil data dari tabel `portofolio`. Hasilnya dipakai untuk mengisi tabel HTML atau form update.
 $query = mysqli_query($koneksi, "SELECT * FROM portofolio WHERE id_portofolio='$id_portofolio'");
+// Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman.
 $data  = mysqli_fetch_object($query);
 
 
@@ -25,6 +34,7 @@ $data  = mysqli_fetch_object($query);
 
 <?php include "header.php"; ?>
 
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `portofolio` pada database. -->
 <body id="page-top">
     <div id="wrapper">
         <?php include "sidebar.php"; ?>
@@ -38,15 +48,18 @@ $data  = mysqli_fetch_object($query);
                         <h1 class="h3 mb-0 text-gray-800">Update Portofolio</h1>
                     </div>
 
-                    <form action="action_update_portofolio.php" method="POST" enctype="multipart/form-data">
+                    <!-- Form ini mengirim semua input ke `action_update_portofolio.php` menggunakan method POST untuk diproses ke database. -->
+<form action="action_update_portofolio.php" method="POST" enctype="multipart/form-data">
 
                         <!-- INPUT HIDDEN ID PORTOFOLIO (WAJIB ADA) -->
-                        <input type="hidden" name="id_portofolio" value="<?php echo $data->id_portofolio; ?>">
+                        <!-- Input name="id_portofolio" menerima ID unik portofolio. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
+<input type="hidden" name="id_portofolio" value="<?php echo $data->id_portofolio; ?>">
 
                         <!-- Judul Portofolio -->
                         <div class="mb-3">
                             <label for="judul_portofolio" class="form-label">Judul Portofolio</label>
-                            <input 
+                            <!-- Input name="judul_portofolio" menerima judul_portofolio. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
+<input 
                                 type="text" 
                                 class="form-control" 
                                 id="judul_portofolio" 
@@ -68,14 +81,16 @@ $data  = mysqli_fetch_object($query);
                                 <?php endif; ?>
                             </div>
 
-                            <input type="file" class="form-control" id="img" name="img" accept="image/*">
+                            <!-- Input name="img" menerima img. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
+<input type="file" class="form-control" id="img" name="img" accept="image/*">
                             <small class="text-muted">*Kosongkan jika tidak ingin mengganti gambar.</small>
                         </div>
 
                         <!-- Link -->
                         <div class="mb-3">
                             <label for="link" class="form-label">Link</label>
-                            <input 
+                            <!-- Input name="link" menerima link. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
+<input 
                                 type="url" 
                                 class="form-control" 
                                 id="link" 
@@ -87,7 +102,8 @@ $data  = mysqli_fetch_object($query);
                         <!-- Deskripsi -->
                         <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <textarea 
+                            <!-- Input name="deskripsi" menerima deskripsi. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
+<textarea 
                                 class="form-control" 
                                 id="deskripsi" 
                                 name="deskripsi" 
@@ -98,7 +114,8 @@ $data  = mysqli_fetch_object($query);
                         <!-- Jenis -->
                         <div class="mb-3">
                             <label for="jenis" class="form-label">Jenis</label>
-                            <input 
+                            <!-- Input name="jenis" menerima jenis. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
+<input 
                                 type="text" 
                                 class="form-control" 
                                 id="jenis" 

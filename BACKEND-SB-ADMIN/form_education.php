@@ -1,5 +1,8 @@
 <?php include "header.php" ?>
+<!-- KETERANGAN ALUR DATA: File ini merupakan bagian modul education dan terhubung dengan tabel `education` di database. -->
 
+
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `education` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -28,11 +31,13 @@
 
                     </div>
                     <!--containT star-->
-                    <form action="action_insert_education.php" method="post">
+                    <!-- Form ini mengirim semua input ke `action_insert_education.php` menggunakan method POST untuk diproses ke database. -->
+<form action="action_insert_education.php" method="post">
 
                         <div class="mb-3">
                             <label for="nama_jurusan" class="form-label">Major</label>
-                            <input type="text"
+                            <!-- Input name="nama_jurusan" menerima nama_jurusan. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input type="text"
                                 class="form-control"
                                 id="nama_jurusan"
                                 name="nama_jurusan">
@@ -40,7 +45,8 @@
 
                         <div class="mb-3">
                             <label for="tahun_belajar" class="form-label">Year</label>
-                            <input type="text"
+                            <!-- Input name="tahun_belajar" menerima tahun_belajar. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input type="text"
                                 class="form-control"
                                 id="tahun_belajar"
                                 name="tahun_belajar">
@@ -48,7 +54,8 @@
 
                         <div class="mb-3">
                             <label for="temapat_belajar" class="form-label">Place</label>
-                            <input type="text"
+                            <!-- Input name="temapat_belajar" menerima temapat_belajar. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input type="text"
                                 class="form-control"
                                 id="temapat_belajar"
                                 name="temapat_belajar">
@@ -56,7 +63,8 @@
 
                         <div class="mb-3">
                             <label for="deskripsi" class="form-label">Description </label>
-                            <textarea name="deskripsi"
+                            <!-- Input name="deskripsi" menerima deskripsi. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<textarea name="deskripsi"
                                 id="deskripsi"
                                 cols="30"
                                 class="form-control"

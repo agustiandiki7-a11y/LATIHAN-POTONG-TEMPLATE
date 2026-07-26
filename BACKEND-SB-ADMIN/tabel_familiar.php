@@ -1,11 +1,18 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul familiar dan terhubung dengan tabel `familiar` di database.
+
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 // Perintah SQL ambil data familiar
+// Query SELECT mengambil data dari tabel `familiar`. Hasilnya dipakai untuk mengisi tabel HTML atau form update.
 $select_familiar = mysqli_query($koneksi, "SELECT * FROM familiar ORDER BY id_familiar DESC");
+if (!$select_familiar) { die("Query gagal: " . mysqli_error($koneksi)); }
 ?>
 
 <?php include "header.php"; ?>
 
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `familiar` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -34,7 +41,8 @@ $select_familiar = mysqli_query($koneksi, "SELECT * FROM familiar ORDER BY id_fa
                     </div>
 
                     <!-- Tombol ADD -->
-                    <a href="form_familiar.php" class="btn btn-info mb-2">ADD</a>
+                    <!-- Tombol Add membuka `form_familiar.php` agar pengguna dapat mengisi data baru sebelum disimpan ke database. -->
+<a href="form_familiar.php" class="btn btn-info mb-2">ADD</a>
 
                     <!-- Content Start -->
                     <table class="table table-striped">
@@ -46,6 +54,7 @@ $select_familiar = mysqli_query($koneksi, "SELECT * FROM familiar ORDER BY id_fa
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman. -->
                             <?php while ($tampil = mysqli_fetch_object($select_familiar)): ?>
                                 <tr>
                                     <!-- Menampilkan Nama -->
@@ -66,11 +75,13 @@ $select_familiar = mysqli_query($koneksi, "SELECT * FROM familiar ORDER BY id_fa
 
                                     <!-- Action Button -->
                                     <td>
-                                        <a href="delete_familiar.php?id_familiar=<?php echo $tampil->id_familiar; ?>" 
+                                        <!-- Tombol Delete mengirim ID melalui URL ke `delete_familiar.php`. ID itu dipakai untuk menentukan data database yang dihapus. -->
+<a href="delete_familiar.php?id_familiar=<?php echo $tampil->id_familiar; ?>" 
                                            class="btn btn-danger"
                                            onclick="return confirm('Confirm to delete?')">Delete</a>
 
-                                        <a href="update_form_familiar.php?id_familiar=<?php echo $tampil->id_familiar; ?>"
+                                        <!-- Tombol Update mengirim ID melalui URL ke `update_form_familiar.php`. Halaman tersebut memakai ID untuk mengambil data lama dari database. -->
+<a href="update_form_familiar.php?id_familiar=<?php echo $tampil->id_familiar; ?>"
                                            class="btn btn-success">
                                             Update
                                         </a>

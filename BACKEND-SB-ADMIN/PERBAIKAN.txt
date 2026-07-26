@@ -1,0 +1,11 @@
+PERBAIKAN YANG DILAKUKAN
+- Memperbaiki form Profile, insert, update, dan delete.
+- Menyamakan input nationality dengan kolom nationalty yang digunakan project.
+- Menambahkan Website dan Phone pada form Profile.
+- Memperbaiki tombol Update Language yang sebelumnya menuju Sidebar Foto.
+- Memperbaiki input judul_portofolio dan kolom jenis pada insert Portofolio.
+- Memperbaiki form Mobile agar menuju action_insert_mobile.php.
+- Mengarahkan menu Profession ke modul Job yang tersedia.
+- Mencegah link menu yang filenya belum tersedia menghasilkan 404.
+- Menambahkan validasi ID dan pesan error query pada beberapa modul.
+- Semua file PHP diuji dengan php -l.

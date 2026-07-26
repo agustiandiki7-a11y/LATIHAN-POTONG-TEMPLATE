@@ -1,9 +1,16 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul laguage dan terhubung dengan tabel `laguage` di database.
+
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
+// Mengambil data ID unik bahasa dari input form yang memiliki name="id_laguage".
 if (isset($_POST['id_laguage'])) {
 
+    // Mengambil data ID unik bahasa dari input form yang memiliki name="id_laguage".
     $id_laguage = $_POST['id_laguage'];
+    // Mengambil data bahasa dari input form yang memiliki name="bahasa".
     $vbahasa    = $_POST['bahasa'];
 
     // Cek apakah ada file yang diunggah
@@ -48,6 +55,7 @@ if (isset($_POST['id_laguage'])) {
     }
 
     if ($update) {
+        // Setelah proses selesai, pengguna diarahkan ke ` table_laguage.php` agar hasil terbaru dapat dilihat.
         header("Location: table_laguage.php");
         exit();
     } else {

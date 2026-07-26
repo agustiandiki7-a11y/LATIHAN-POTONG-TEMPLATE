@@ -1,3 +1,4 @@
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `database` pada database. -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -37,7 +38,7 @@
 
     <!-- 2. Skill -->
     <li class="nav-item">
-        <a class="nav-link" href="tabel_skil.php">
+        <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>sekil</span>
         </a>
@@ -61,7 +62,7 @@
 
     <!-- 5. Profession -->
     <li class="nav-item">
-        <a class="nav-link" href="tabel_profession.php">
+        <a class="nav-link" href="tabel_job.php">
             <i class="fas fa-fw fa-briefcase"></i>
             <span>profession</span>
         </a>
@@ -86,7 +87,7 @@
 
     <!-- 8. Reference -->
     <li class="nav-item">
-        <a class="nav-link" href="tabel_reference.php">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-bookmark"></i>
             <span>reference</span>
         </a>
@@ -102,7 +103,8 @@
 
     <!-- 10. Mobile Icon -->
     <li class="nav-item">
-        <a class="nav-link" href="tabel_moble.php">
+        <!-- Tombol Add membuka `form_mobile.php` agar pengguna dapat mengisi data baru sebelum disimpan ke database. -->
+<a class="nav-link" href="tabel_mobile.php">
             <i class="fas fa-fw fa-mobile-alt"></i>
             <span>mobile icon</span>
         </a>
@@ -118,7 +120,7 @@
 
     <!-- 12. Tools Icon -->
     <li class="nav-item">
-        <a class="nav-link" href="tabel_tols_icon.php">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-wrench"></i>
             <span>tols icon</span>
         </a>
@@ -126,7 +128,7 @@
 
     <!-- 13. Login -->
     <li class="nav-item">
-        <a class="nav-link" href="tabel_login.php">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-sign-in-alt"></i>
             <span>login</span>
         </a>

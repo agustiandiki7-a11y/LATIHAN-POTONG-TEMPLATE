@@ -1,86 +1,111 @@
+<?php
+// Menghubungkan file dengan database
+include "connection.php";
+?>
+
 <?php include "header.php" ?>
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
         <?php include "sidebar.php" ?>
-        <!-- End of Sidebar -->
 
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
                 <?php include "topbar.php" ?>
-                <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
+                    <!-- Judul halaman -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Icon mobile</h1>
-
+                        <h1 class="h3 mb-0 text-gray-800">
+                            FORM MOBILE ICON
+                        </h1>
                     </div>
-                    <!--containT star-->
-                    <form action="action_insert_job.php" method="POST">
 
-                        <div class="mb-3">
-                            <label for="job" class="form-label">Nama</label>
+                    <!--
+                    Form ini digunakan untuk menambahkan data baru.
+                    Data akan dikirim ke action_insert_mobile.php menggunakan method POST.
+                    -->
+                    <form action="action_insert_mobile.php" method="POST">
+
+                        <div class="form-group">
+
+                            <label>Nama Mobile</label>
+
+                            <!--
+                            Input ini akan disimpan ke field "nama"
+                            pada tabel mobile.
+                            -->
                             <input
                                 type="text"
-                                class="form-control"
-                                id="Nama"
                                 name="nama"
+                                class="form-control"
+                                placeholder="Masukkan Nama Mobile"
                                 required>
+
                         </div>
 
-                        <div class="mb-3">
-                            <label for="year" class="form-label">Icon</label>
+                        <div class="form-group">
+
+                            <label>Icon</label>
+
+                            <!--
+                            Input ini akan disimpan ke field "icon"
+                            pada tabel mobile.
+
+                            Contoh:
+                            fab fa-whatsapp
+                            fab fa-instagram
+                            fab fa-facebook
+                            -->
                             <input
                                 type="text"
-                                class="form-control"
-                                id="icon"
                                 name="icon"
+                                class="form-control"
+                                placeholder="Contoh : fab fa-whatsapp"
                                 required>
+
                         </div>
 
-                     
+                        <br>
 
-                        <button type="submit" class="btn btn-primary">
-                            Submit
+                        <!-- Tombol Simpan -->
+                        <button
+                            type="submit"
+                            name="submit"
+                            class="btn btn-primary">
+
+                            Save
+
                         </button>
+
+                        <!-- Tombol Kembali -->
+                        <a
+                            href="tabel_mobile.php"
+                            class="btn btn-secondary">
+
+                            Back
+
+                        </a>
 
                     </form>
 
-                    <!--CONTAINT END-->
-
-                    <!-- Content fluid -->
-
-                    <!-- /.container-fluid -->
-
                 </div>
-                <!-- End of Main Content -->
-
-                <!-- Footer -->
-                <?php include "footer.php" ?>
-                <!-- End of Footer -->
 
             </div>
-            <!-- End of Content Wrapper -->
+
+            <?php include "footer.php" ?>
 
         </div>
-        <!-- End of Page Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <?php include "buttom.php" ?>
+    </div>
 
-        <!-- Logout Modal-->
-
+    <?php include "script.php" ?>
 
 </body>
+
+</html>

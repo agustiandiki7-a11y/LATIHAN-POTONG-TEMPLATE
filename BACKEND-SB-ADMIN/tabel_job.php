@@ -1,11 +1,17 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul job dan terhubung dengan tabel `job` di database.
+
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
 $select_job = mysqli_query($koneksi, "  SELECT*FROM job ORDER BY id_job DESC");
+if (!$select_job) { die("Query gagal: " . mysqli_error($koneksi)); }
 
 ?>
 <?php include "header.php" ?>
 
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `job` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -34,7 +40,8 @@ $select_job = mysqli_query($koneksi, "  SELECT*FROM job ORDER BY id_job DESC");
 
                     </div>
                     <!--containT star-->
-                    <a href="form_job.php" class=" btn btn-info"> Add</a>
+                    <!-- Tombol Add membuka `form_job.php` agar pengguna dapat mengisi data baru sebelum disimpan ke database. -->
+<a href="form_job.php" class=" btn btn-info"> Add</a>
                     <!--CONTAINT END-->
                     <table class="table table-striped">
                         <thead>
@@ -49,22 +56,29 @@ $select_job = mysqli_query($koneksi, "  SELECT*FROM job ORDER BY id_job DESC");
                         </thead>
                         <tbody>
 
+                            <!-- Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman. -->
                             <?php while ($tampil = mysqli_fetch_object($select_job)) : ?>
 
                                 <tr>
-                                    <td><?= $tampil->nama_pekerjaan ?></td>
-                                    <td><?= $tampil->tahun_pekerjaan ?></td>
-                                    <td><?= $tampil->tempat_pekerjaan ?></td>
-                                    <td><?= $tampil->deskripsi ?></td>
+                                    <!-- Kolom ini diisi dari field `nama_pekerjaan` (nama pekerjaan) pada tabel `job`. Data tersedia karena query SELECT di bagian atas halaman. -->
+<td><?= $tampil->nama_pekerjaan ?></td>
+                                    <!-- Kolom ini diisi dari field `tahun_pekerjaan` (tahun pekerjaan) pada tabel `job`. Data tersedia karena query SELECT di bagian atas halaman. -->
+<td><?= $tampil->tahun_pekerjaan ?></td>
+                                    <!-- Kolom ini diisi dari field `tempat_pekerjaan` (tempat pekerjaan) pada tabel `job`. Data tersedia karena query SELECT di bagian atas halaman. -->
+<td><?= $tampil->tempat_pekerjaan ?></td>
+                                    <!-- Kolom ini diisi dari field `deskripsi` (deskripsi) pada tabel `job`. Data tersedia karena query SELECT di bagian atas halaman. -->
+<td><?= $tampil->deskripsi ?></td>
 
                                     <td>
-                                        <a href="delete_job.php?id_job=<?= $tampil->id_job ?>"
+                                        <!-- Tombol Delete mengirim ID melalui URL ke `delete_job.php`. ID itu dipakai untuk menentukan data database yang dihapus. -->
+<a href="delete_job.php?id_job=<?= $tampil->id_job ?>"
                                             class="btn btn-danger"
                                             onclick="return confirm('Yakin ingin menghapus data ini?')">
                                             Delete
                                         </a>
 
-                                        <a href="update_form_job.php?id_job=<?= $tampil->id_job ?>"
+                                        <!-- Tombol Update mengirim ID melalui URL ke `update_form_job.php`. Halaman tersebut memakai ID untuk mengambil data lama dari database. -->
+<a href="update_form_job.php?id_job=<?= $tampil->id_job ?>"
                                             class="btn btn-success">
                                             Update
                                         </a>

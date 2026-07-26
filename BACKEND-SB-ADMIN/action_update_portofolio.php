@@ -1,13 +1,22 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul portofolio dan terhubung dengan tabel `portofolio` di database.
+
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Tangkap data dari form
+    // Mengambil data ID unik portofolio dari input form yang memiliki name="id_portofolio".
     $id_portofolio   = mysqli_real_escape_string($koneksi, $_POST['id_portofolio']);
+    // Mengambil data judul_portofolio dari input form yang memiliki name="judul_portofolio".
     $vjudul          = mysqli_real_escape_string($koneksi, $_POST['judul_portofolio']);
+    // Mengambil data link dari input form yang memiliki name="link".
     $vlink           = mysqli_real_escape_string($koneksi, $_POST['link']);
+    // Mengambil data jenis dari input form yang memiliki name="jenis".
     $vjenis          = mysqli_real_escape_string($koneksi, $_POST['jenis']);
+    // Mengambil data deskripsi dari input form yang memiliki name="deskripsi".
     $vdeskripsi      = mysqli_real_escape_string($koneksi, $_POST['deskripsi']);
 
     $target_dir = __DIR__ . "/foto/";
@@ -27,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Ambil gambar lama dari database untuk dihapus
         $query_lama = mysqli_query($koneksi, "SELECT img FROM portofolio WHERE id_portofolio='$id_portofolio'");
         if ($query_lama && mysqli_num_rows($query_lama) > 0) {
+            // Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman.
             $data_lama = mysqli_fetch_object($query_lama);
             if (!empty($data_lama->img) && file_exists($target_dir . $data_lama->img)) {
                 unlink($target_dir . $data_lama->img);
@@ -61,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($sql_update) {
+        // Setelah proses selesai, pengguna diarahkan ke ` tabel_portofolio.php` agar hasil terbaru dapat dilihat.
         header("Location: tabel_portofolio.php");
         exit();
     } else {
@@ -68,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 } else {
+    // Setelah proses selesai, pengguna diarahkan ke ` tabel_portofolio.php` agar hasil terbaru dapat dilihat.
     header("Location: tabel_portofolio.php");
     exit();
 }

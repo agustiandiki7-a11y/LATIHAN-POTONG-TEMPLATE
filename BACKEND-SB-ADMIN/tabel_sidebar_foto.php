@@ -1,13 +1,19 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul sidebar_foto dan terhubung dengan tabel `sidebar_foto` di database.
+
 // Memanggil file koneksi database
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
 // Mengambil semua data dari tabel sidebar_foto
+// Query SELECT mengambil data dari tabel `sidebar_foto`. Hasilnya dipakai untuk mengisi tabel HTML atau form update.
 $select_sidebar_foto = mysqli_query($koneksi, "SELECT * FROM sidebar_foto ORDER BY id_sedebar_foto DESC");
 ?>
 
 <?php include "header.php"; ?>
 
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `sidebar_foto` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -36,7 +42,8 @@ $select_sidebar_foto = mysqli_query($koneksi, "SELECT * FROM sidebar_foto ORDER 
                     </div>
 
                     <!-- Tombol menuju halaman tambah sidebar foto -->
-                    <a href="form_sidebar_foto.php" class="btn btn-info mb-3">
+                    <!-- Tombol Add membuka `form_sidebar_foto.php` agar pengguna dapat mengisi data baru sebelum disimpan ke database. -->
+<a href="form_sidebar_foto.php" class="btn btn-info mb-3">
                         Add
                     </a>
 
@@ -60,6 +67,7 @@ $select_sidebar_foto = mysqli_query($koneksi, "SELECT * FROM sidebar_foto ORDER 
                                 <!-- Perulangan untuk menampilkan data sidebar_foto -->
                                 <?php 
                                 $no = 1;
+                                // Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman.
                                 while ($tampil = mysqli_fetch_object($select_sidebar_foto)) : 
                                 ?>
 
@@ -87,14 +95,16 @@ $select_sidebar_foto = mysqli_query($koneksi, "SELECT * FROM sidebar_foto ORDER 
                                         <td>
 
                                             <!-- Tombol Delete -->
-                                            <a href="delete_sidebar_foto.php?id_sedebar_foto=<?= $tampil->id_sedebar_foto; ?>"
+                                            <!-- Tombol Delete mengirim ID melalui URL ke `delete_sidebar_foto.php`. ID itu dipakai untuk menentukan data database yang dihapus. -->
+<a href="delete_sidebar_foto.php?id_sedebar_foto=<?= $tampil->id_sedebar_foto; ?>"
                                                 class="btn btn-danger btn-sm"
                                                 onclick="return confirm('Yakin ingin menghapus foto ini?')">
                                                 Delete
                                             </a>
 
                                             <!-- Tombol Update -->
-                                            <a href="update_form_sidebar_foto.php?id_sedebar_foto=<?php echo $tampil->id_sedebar_foto; ?>"
+                                            <!-- Tombol Update mengirim ID melalui URL ke `update_form_sidebar_foto.php`. Halaman tersebut memakai ID untuk mengambil data lama dari database. -->
+<a href="update_form_sidebar_foto.php?id_sedebar_foto=<?php echo $tampil->id_sedebar_foto; ?>"
                                                 class="btn btn-success btn-sm">
                                                 Update
                                             </a>

@@ -7,6 +7,7 @@ yaitu mebuat form_profile -->
 
 <?php include "header.php"; ?>
 
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `profile` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -35,11 +36,13 @@ yaitu mebuat form_profile -->
                     </div>
 
                     <!--containT star-->
-                 <form action="./action_insert.php" method="post">
+                 <!-- Form ini mengirim semua input ke `action_insert_profile.php` menggunakan method POST untuk diproses ke database. -->
+<form action="action_insert_profile.php" method="post">
 
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama</label>
-                            <input
+                            <!-- Input name="nama" menerima nama. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input
                                 type="text"
                                 class="form-control"
                                 id="nama"
@@ -49,7 +52,8 @@ yaitu mebuat form_profile -->
 
                         <div class="mb-3">
                             <label for="about" class="form-label">About</label>
-                            <textarea
+                            <!-- Input name="about" menerima deskripsi/overview. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<textarea
                                 name="about"
                                 id="about"
                                 class="form-control"
@@ -57,8 +61,21 @@ yaitu mebuat form_profile -->
                         </div>
 
                         <div class="mb-3">
+                            <label for="website" class="form-label">Website</label>
+                            <!-- Input name="website" menerima alamat website. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input type="text" class="form-control" id="website" name="website">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <!-- Input name="phone" menerima nomor telepon. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input type="text" class="form-control" id="phone" name="phone">
+                        </div>
+
+                        <div class="mb-3">
                             <label for="email" class="form-label">Email Address</label>
-                            <input
+                            <!-- Input name="email" menerima alamat email. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input
                                 type="email"
                                 class="form-control"
                                 id="email"
@@ -67,7 +84,8 @@ yaitu mebuat form_profile -->
 
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <textarea
+                            <!-- Input name="address" menerima alamat. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<textarea
                                 name="address"
                                 id="address"
                                 class="form-control"
@@ -76,7 +94,8 @@ yaitu mebuat form_profile -->
 
                         <div class="mb-3">
                             <label for="linkedin" class="form-label">LinkedIn</label>
-                            <input
+                            <!-- Input name="linkedin" menerima akun LinkedIn. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input
                                 type="text"
                                 class="form-control"
                                 id="linkedin"
@@ -85,7 +104,8 @@ yaitu mebuat form_profile -->
 
                         <div class="mb-3">
                             <label for="nationality" class="form-label">Nationalty</label>
-                            <input
+                            <!-- Input name="nationality" menerima kewarganegaraan. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input
                                 type="text"
                                 class="form-control"
                                 id="nationality"

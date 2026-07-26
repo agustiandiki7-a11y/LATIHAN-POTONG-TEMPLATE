@@ -1,18 +1,27 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul familiar dan terhubung dengan tabel `familiar` di database.
+
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
+// Menerima ID unik familiar yang dikirim melalui URL, biasanya dari tombol Update atau Delete pada halaman tabel.
 if (!isset($_GET['id_familiar'])) {
+    // Setelah proses selesai, pengguna diarahkan ke ` tabel_familiar.php` agar hasil terbaru dapat dilihat.
     header("Location: tabel_familiar.php");
     exit;
 }
 
+// Menerima ID unik familiar yang dikirim melalui URL, biasanya dari tombol Update atau Delete pada halaman tabel.
 $id_familiar = $_GET['id_familiar'];
 
 $select_id = mysqli_query($koneksi, "
+    // Query SELECT mengambil data dari tabel `familiar`. Hasilnya dipakai untuk mengisi tabel HTML atau form update.
     SELECT * FROM familiar
     WHERE id_familiar = '$id_familiar'
 ");
 
+// Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman.
 $familiar = mysqli_fetch_object($select_id);
 
 if (!$familiar) {
@@ -22,6 +31,7 @@ if (!$familiar) {
 
 <?php include "header.php" ?>
 
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `familiar` pada database. -->
 <body id="page-top">
 
     <div id="wrapper">
@@ -42,9 +52,11 @@ if (!$familiar) {
                         </h1>
                     </div>
 
-                    <form action="action_update_familiar.php" method="post">
+                    <!-- Form ini mengirim semua input ke `action_update_familiar.php` menggunakan method POST untuk diproses ke database. -->
+<form action="action_update_familiar.php" method="post">
 
-                        <input type="hidden"
+                        <!-- Input name="id_familiar" menerima ID unik familiar. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
+<input type="hidden"
                             name="id_familiar"
                             value="<?= $familiar->id_familiar ?>">
 
@@ -53,7 +65,8 @@ if (!$familiar) {
                                 Name
                             </label>
 
-                            <input type="text"
+                            <!-- Input name="nama" menerima nama. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
+<input type="text"
                                 class="form-control"
                                 id="nama"
  name="nama"value="<?= htmlspecialchars($familiar->nama) ?>"required>
@@ -64,7 +77,8 @@ if (!$familiar) {
                                 Icon
                             </label>
 
-                            <input type="text"
+                            <!-- Input name="icon" menerima icon. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
+<input type="text"
                                 class="form-control"id="icon"name="icon"value="<?= htmlspecialchars($familiar->icon) ?>" required>
                         </div>
 

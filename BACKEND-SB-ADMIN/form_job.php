@@ -1,5 +1,8 @@
 <?php include "header.php" ?>
+<!-- KETERANGAN ALUR DATA: File ini merupakan bagian modul job dan terhubung dengan tabel `job` di database. -->
 
+
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `job` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -28,11 +31,13 @@
 
                     </div>
                     <!--containT star-->
-                    <form action="action_insert_job.php" method="POST">
+                    <!-- Form ini mengirim semua input ke `action_insert_job.php` menggunakan method POST untuk diproses ke database. -->
+<form action="action_insert_job.php" method="POST">
 
                         <div class="mb-3">
                             <label for="job" class="form-label">Profession</label>
-                            <input
+                            <!-- Input name="nama_pekerjaan" menerima nama pekerjaan. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input
                                 type="text"
                                 class="form-control"
                                 id="job"
@@ -42,7 +47,8 @@
 
                         <div class="mb-3">
                             <label for="year" class="form-label">Year</label>
-                            <input
+                            <!-- Input name="tahun_pekerjaan" menerima tahun pekerjaan. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input
                                 type="text"
                                 class="form-control"
                                 id="year"
@@ -52,7 +58,8 @@
 
                         <div class="mb-3">
                             <label for="place" class="form-label">Place</label>
-                            <input
+                            <!-- Input name="tempat_pekerjaan" menerima tempat pekerjaan. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input
                                 type="text"
                                 class="form-control"
                                 id="place"
@@ -65,7 +72,8 @@
                                 Responsibilities
                             </label>
 
-                            <textarea
+                            <!-- Input name="deskripsi" menerima deskripsi. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<textarea
                                 name="deskripsi"
                                 id="deskripsi"
                                 class="form-control"

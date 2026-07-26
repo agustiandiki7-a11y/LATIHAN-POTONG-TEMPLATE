@@ -1,10 +1,15 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul education dan terhubung dengan tabel `education` di database.
+
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
 $select_education = mysqli_query($koneksi, "
     SELECT * FROM education
     ORDER BY 1 DESC
 ");
+if (!$select_education) { die("Query gagal: " . mysqli_error($koneksi)); }
 
 if (!$select_education) {
     die("Query gagal: " . mysqli_error($koneksi));
@@ -13,6 +18,7 @@ if (!$select_education) {
 
 <?php include "header.php" ?>
 
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `education` pada database. -->
 <body id="page-top">
 
     <div id="wrapper">
@@ -33,7 +39,8 @@ if (!$select_education) {
                         </h1>
                     </div>
 
-                    <a href="form_education.php"
+                    <!-- Tombol Add membuka `form_education.php` agar pengguna dapat mengisi data baru sebelum disimpan ke database. -->
+<a href="form_education.php"
                         class="btn btn-info mb-3">
                         Add
                     </a>
@@ -52,6 +59,7 @@ if (!$select_education) {
 
                         <tbody>
 
+                            <!-- Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman. -->
                             <?php while ($tampil = mysqli_fetch_object($select_education)): ?>
 
                                 <tr>
@@ -64,12 +72,14 @@ if (!$select_education) {
                                     <td><?= htmlspecialchars($tampil->deskripsi) ?></td>
 
                                     <td>
-                                        <a href="update_form_education.php?id_education=<?= $tampil->id_education ?>"
+                                        <!-- Tombol Update mengirim ID melalui URL ke `update_form_education.php`. Halaman tersebut memakai ID untuk mengambil data lama dari database. -->
+<a href="update_form_education.php?id_education=<?= $tampil->id_education ?>"
                                             class="btn btn-success">
                                             Update
                                         </a>
 
-                                        <a href="delete_education.php?id_education=<?= $tampil->id_education ?>"
+                                        <!-- Tombol Delete mengirim ID melalui URL ke `delete_education.php`. ID itu dipakai untuk menentukan data database yang dihapus. -->
+<a href="delete_education.php?id_education=<?= $tampil->id_education ?>"
                                             class="btn btn-danger btn-sm"
                                             onclick="return confirm('Yakin ingin menghapus data ini?')">
                                             Delete

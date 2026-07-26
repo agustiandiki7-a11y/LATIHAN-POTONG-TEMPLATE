@@ -1,5 +1,8 @@
 <?php include "header.php"; ?>
+<!-- KETERANGAN ALUR DATA: File ini merupakan bagian modul sidebar_foto dan terhubung dengan tabel `sidebar_foto` di database. -->
 
+
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `sidebar_foto` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -29,11 +32,13 @@
 
                     <!-- CONTAIN START -->
                     <!-- WAJIB menambahkan enctype="multipart/form-data" untuk upload foto -->
-                    <form action="action_insert_sidebar_foto.php" method="POST" enctype="multipart/form-data">
+                    <!-- Form ini mengirim semua input ke `action_insert_sidebar_foto.php` menggunakan method POST untuk diproses ke database. -->
+<form action="action_insert_sidebar_foto.php" method="POST" enctype="multipart/form-data">
 
                         <div class="mb-3">
                             <label for="sidebar_foto" class="form-label">Sidebar</label>
-                            <input 
+                            <!-- Input name="sidebar_foto" menerima sidebar_foto. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input 
                                 type="file" 
                                 class="form-control" 
                                 id="img" 

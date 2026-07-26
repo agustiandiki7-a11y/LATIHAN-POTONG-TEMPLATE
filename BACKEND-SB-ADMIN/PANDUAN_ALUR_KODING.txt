@@ -1,0 +1,22 @@
+PANDUAN MEMBACA ALUR CRUD
+
+1. form_*.php
+   Pengguna mengisi input. Atribut name pada setiap input menjadi kunci yang diterima oleh $_POST.
+
+2. action_insert_*.php
+   $_POST mengambil data dari form, lalu query INSERT menyimpannya ke tabel database.
+
+3. tabel_*.php / table_*.php
+   Query SELECT mengambil data dari database. Perulangan while menampilkan semua data ke baris tabel HTML.
+
+4. update_form_*.php
+   Tombol Update mengirim ID lewat URL. $_GET menerima ID, lalu SELECT mengambil satu data lama untuk dimasukkan ke value form.
+
+5. action_update_*.php
+   Data hasil edit dikirim melalui POST. Query UPDATE mengubah baris yang ID-nya sama.
+
+6. delete_*.php
+   Tombol Delete mengirim ID melalui URL. Query DELETE menghapus data dengan ID tersebut.
+
+7. header(Location: ...)
+   Setelah proses database selesai, halaman diarahkan kembali ke tabel agar perubahan langsung terlihat.

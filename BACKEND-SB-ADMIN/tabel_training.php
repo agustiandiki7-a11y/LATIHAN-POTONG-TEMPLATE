@@ -1,11 +1,18 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul training dan terhubung dengan tabel `training` di database.
+
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
+// Query SELECT mengambil data dari tabel `training`. Hasilnya dipakai untuk mengisi tabel HTML atau form update.
 $select_training = mysqli_query($koneksi, "SELECT * FROM training ORDER BY id_training DESC");
+if (!$select_training) { die("Query gagal: " . mysqli_error($koneksi)); }
 
 ?>
 <?php include "header.php"; ?>
 
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `training` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -35,7 +42,8 @@ $select_training = mysqli_query($koneksi, "SELECT * FROM training ORDER BY id_tr
 
                     <!-- Button Add Training -->
                     <div class="mb-3">
-                        <a href="form_training.php" class="btn btn-info">Add Training</a>
+                        <!-- Tombol Add membuka `form_training.php` agar pengguna dapat mengisi data baru sebelum disimpan ke database. -->
+<a href="form_training.php" class="btn btn-info">Add Training</a>
                     </div>
 
                     <!-- Table Training -->
@@ -51,24 +59,31 @@ $select_training = mysqli_query($koneksi, "SELECT * FROM training ORDER BY id_tr
                         </thead>
                         <tbody>
 
+                            <!-- Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman. -->
                             <?php while ($tampil = mysqli_fetch_object($select_training)) : ?>
 
                                 <tr>
-                                    <td><?= $tampil->nama_training ?></td>
-                                    <td><?= $tampil->tahun_training ?></td>
-                                    <td><?= $tampil->tempat_training ?></td>
-                                    <td><?= $tampil->deskripsi ?></td>
+                                    <!-- Kolom ini diisi dari field `nama_training` (nama training) pada tabel `training`. Data tersedia karena query SELECT di bagian atas halaman. -->
+<td><?= $tampil->nama_training ?></td>
+                                    <!-- Kolom ini diisi dari field `tahun_training` (tahun training) pada tabel `training`. Data tersedia karena query SELECT di bagian atas halaman. -->
+<td><?= $tampil->tahun_training ?></td>
+                                    <!-- Kolom ini diisi dari field `tempat_training` (tempat training) pada tabel `training`. Data tersedia karena query SELECT di bagian atas halaman. -->
+<td><?= $tampil->tempat_training ?></td>
+                                    <!-- Kolom ini diisi dari field `deskripsi` (deskripsi) pada tabel `training`. Data tersedia karena query SELECT di bagian atas halaman. -->
+<td><?= $tampil->deskripsi ?></td>
 
                                     <td>
                                         <!-- Action Delete Training -->
-                                        <a href="delete_training.php?id_training=<?= $tampil->id_training ?>"
+                                        <!-- Tombol Delete mengirim ID melalui URL ke `delete_training.php`. ID itu dipakai untuk menentukan data database yang dihapus. -->
+<a href="delete_training.php?id_training=<?= $tampil->id_training ?>"
                                            class="btn btn-danger btn-sm"
                                            onclick="return confirm('Yakin ingin menghapus data ini?')">
                                             Delete
                                         </a>
 
                                         <!-- Action Update Training -->
-                                        <a href="update_form_training.php?id_training=<?= $tampil->id_training ?>"
+                                        <!-- Tombol Update mengirim ID melalui URL ke `update_form_training.php`. Halaman tersebut memakai ID untuk mengambil data lama dari database. -->
+<a href="update_form_training.php?id_training=<?= $tampil->id_training ?>"
                                            class="btn btn-success btn-sm">
                                             Update
                                         </a>

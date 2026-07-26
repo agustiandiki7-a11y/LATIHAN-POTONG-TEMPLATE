@@ -1,9 +1,15 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul sidebar_foto dan terhubung dengan tabel `sidebar_foto` di database.
+
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
 // 1. Cek apakah ID dikirim dari form update (id_sedebar_foto)
+// Mengambil data id_sedebar_foto dari input form yang memiliki name="id_sedebar_foto".
 if (isset($_POST['id_sedebar_foto']) && !empty($_POST['id_sedebar_foto'])) {
 
+    // Mengambil data id_sedebar_foto dari input form yang memiliki name="id_sedebar_foto".
     $id_sedebar_foto = mysqli_real_escape_string($koneksi, $_POST['id_sedebar_foto']);
     $target_dir      = __DIR__ . "/sidebar_foto/";
 
@@ -24,6 +30,7 @@ if (isset($_POST['id_sedebar_foto']) && !empty($_POST['id_sedebar_foto'])) {
         $query_lama = mysqli_query($koneksi, "SELECT sidebar_foto FROM sidebar_foto WHERE id_sedebar_foto='$id_sedebar_foto'");
         
         if ($query_lama && mysqli_num_rows($query_lama) > 0) {
+            // Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman.
             $data_lama = mysqli_fetch_object($query_lama);
             if (!empty($data_lama->sidebar_foto) && file_exists($target_dir . $data_lama->sidebar_foto)) {
                 unlink($target_dir . $data_lama->sidebar_foto); // Hapus foto lama
@@ -51,6 +58,7 @@ if (isset($_POST['id_sedebar_foto']) && !empty($_POST['id_sedebar_foto'])) {
 
     if ($sql_update) {
         // Berhasil update, alihkan kembali ke tabel_sidebar_foto.php
+        // Setelah proses selesai, pengguna diarahkan ke ` tabel_sidebar_foto.php` agar hasil terbaru dapat dilihat.
         header("Location: tabel_sidebar_foto.php");
         exit();
     } else {
@@ -59,6 +67,7 @@ if (isset($_POST['id_sedebar_foto']) && !empty($_POST['id_sedebar_foto'])) {
 
 } else {
     // Jika ID tidak ditemukan/akses langsung
+    // Setelah proses selesai, pengguna diarahkan ke ` tabel_sidebar_foto.php` agar hasil terbaru dapat dilihat.
     header("Location: tabel_sidebar_foto.php");
     exit();
 }

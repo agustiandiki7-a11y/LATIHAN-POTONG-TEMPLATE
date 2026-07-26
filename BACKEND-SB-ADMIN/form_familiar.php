@@ -1,5 +1,8 @@
 <?php include "header.php" ?>
+<!-- KETERANGAN ALUR DATA: File ini merupakan bagian modul familiar dan terhubung dengan tabel `familiar` di database. -->
 
+
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `familiar` pada database. -->
 <body id="page-top">
 
 
@@ -32,18 +35,21 @@
 
                     <!-- content start -->
 
-                <form action="action_insert_familiar.php" method="post">
+                <!-- Form ini mengirim semua input ke `action_insert_familiar.php` menggunakan method POST untuk diproses ke database. -->
+<form action="action_insert_familiar.php" method="post">
                     <div class="mb-3">
                         <label for="nama" class="form-label">
                             nama
                         </label>
-                        <input type="text" class="form-control"
+                        <!-- Input name="nama" menerima nama. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input type="text" class="form-control"
                         id="nama" name="nama">
                     </div>
                     <div class="mb-3">
                         <label for="icon" class="form-label">
                             icon</label>
-                        <input type="text" class="form-control"
+                        <!-- Input name="icon" menerima icon. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input type="text" class="form-control"
                         id="nama" name="icon">
                     </div>
 

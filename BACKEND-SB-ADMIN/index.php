@@ -1,5 +1,8 @@
 <?php include "header.php"?>
+<!-- KETERANGAN ALUR DATA: File ini merupakan bagian modul umum dan terhubung dengan tabel `database` di database. -->
 
+
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `database` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->

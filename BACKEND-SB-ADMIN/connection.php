@@ -1,4 +1,7 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul umum dan terhubung dengan tabel `database` di database.
+
 $servername = "localhost";
 $username = "root";
 $password = "";

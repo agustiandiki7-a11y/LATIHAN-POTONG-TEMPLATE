@@ -1,5 +1,8 @@
 <?php include "header.php"; ?>
+<!-- KETERANGAN ALUR DATA: File ini merupakan bagian modul portofolio dan terhubung dengan tabel `portofolio` di database. -->
 
+
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `portofolio` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -28,12 +31,14 @@
                     </div>
 
                     <!-- Content Start -->
-                    <form action="action_insert_portofolio.php" method="POST" enctype="multipart/form-data">
+                    <!-- Form ini mengirim semua input ke `action_insert_portofolio.php` menggunakan method POST untuk diproses ke database. -->
+<form action="action_insert_portofolio.php" method="POST" enctype="multipart/form-data">
 
                         <!-- Judul Portofolio -->
                         <div class="mb-3">
                             <label for="judul_portofolio" class="form-label">Judul Portofolio</label>
-                            <input
+                            <!-- Input name="judul_portofolio" menerima judul_portofolio. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input
                                 type="text"
                                 class="form-control"
                                 id="judul_portofolio"
@@ -45,7 +50,8 @@
                         <!-- Gambar Portofolio -->
                         <div class="mb-3">
                             <label for="img" class="form-label">Img</label>
-                            <input
+                            <!-- Input name="img" menerima img. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input
                                 type="file"
                                 class="form-control"
                                 id="img"
@@ -57,7 +63,8 @@
                         <!-- Link Project / Portofolio -->
                         <div class="mb-3">
                             <label for="link" class="form-label">Link</label>
-                            <input
+                            <!-- Input name="link" menerima link. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input
                                 type="url"
                                 class="form-control"
                                 id="link"
@@ -69,7 +76,8 @@
                         <!-- Jenis Portofolio -->
                         <div class="mb-3">
                             <label for="jenis" class="form-label">Jenis</label>
-                            <input
+                            <!-- Input name="jenis" menerima jenis. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input
                                 type="text"
                                 class="form-control"
                                 id="jenis"
@@ -81,7 +89,8 @@
                         <!-- Deskripsi Portofolio -->
                         <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <textarea
+                            <!-- Input name="deskripsi" menerima deskripsi. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<textarea
                                 class="form-control"
                                 id="deskripsi"
                                 name="deskripsi"

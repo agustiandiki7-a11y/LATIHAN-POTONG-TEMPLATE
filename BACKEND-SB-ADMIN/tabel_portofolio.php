@@ -1,14 +1,21 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul portofolio dan terhubung dengan tabel `portofolio` di database.
+
 // Memanggil file koneksi database
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
 // Mengambil semua data dari tabel portofolio
+// Query SELECT mengambil data dari tabel `portofolio`. Hasilnya dipakai untuk mengisi tabel HTML atau form update.
 $select_portofolio = mysqli_query($koneksi, "SELECT * FROM portofolio ORDER BY id_portofolio DESC");
+if (!$select_portofolio) { die("Query gagal: " . mysqli_error($koneksi)); }
 
 ?>
 
 <?php include "header.php"; ?>
 
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `portofolio` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -39,7 +46,8 @@ $select_portofolio = mysqli_query($koneksi, "SELECT * FROM portofolio ORDER BY i
                     </div>
 
                     <!-- Tombol menuju halaman tambah portofolio -->
-                    <a href="form_portofolio.php" class="btn btn-info mb-2">
+                    <!-- Tombol Add membuka `form_portofolio.php` agar pengguna dapat mengisi data baru sebelum disimpan ke database. -->
+<a href="form_portofolio.php" class="btn btn-info mb-2">
                         Add
                     </a>
 
@@ -64,12 +72,14 @@ $select_portofolio = mysqli_query($koneksi, "SELECT * FROM portofolio ORDER BY i
                             <tbody>
 
                                 <!-- Perulangan untuk menampilkan data portofolio -->
+                                <!-- Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman. -->
                                 <?php while ($tampil = mysqli_fetch_object($select_portofolio)) : ?>
 
                                     <tr>
 
                                         <!-- Menampilkan data sesuai nama kolom phpMyAdmin -->
-                                        <td>
+                                        <!-- Kolom ini diisi dari field `judul_portofolio` (judul_portofolio) pada tabel `portofolio`. Data tersedia karena query SELECT di bagian atas halaman. -->
+<td>
                                             <?php echo $tampil->judul_portofolio; ?>
                                         </td>
                                         
@@ -87,10 +97,12 @@ $select_portofolio = mysqli_query($koneksi, "SELECT * FROM portofolio ORDER BY i
                                                 <?php echo $tampil->link; ?>
                                             </a>
                                         </td>
-                                        <td>
+                                        <!-- Kolom ini diisi dari field `deskripsi` (deskripsi) pada tabel `portofolio`. Data tersedia karena query SELECT di bagian atas halaman. -->
+<td>
                                             <?php echo $tampil->deskripsi; ?>
                                         </td>
-                                        <td>
+                                        <!-- Kolom ini diisi dari field `jenis` (jenis) pada tabel `portofolio`. Data tersedia karena query SELECT di bagian atas halaman. -->
+<td>
                                             <?php echo $tampil->jenis; ?>
                                         </td>
 
@@ -98,14 +110,16 @@ $select_portofolio = mysqli_query($koneksi, "SELECT * FROM portofolio ORDER BY i
                                         <td>
 
                                             <!-- Tombol Delete -->
-                                            <a href="delete_portofolio.php?id_portofolio=<?= $tampil->id_portofolio; ?>"
+                                            <!-- Tombol Delete mengirim ID melalui URL ke `delete_portofolio.php`. ID itu dipakai untuk menentukan data database yang dihapus. -->
+<a href="delete_portofolio.php?id_portofolio=<?= $tampil->id_portofolio; ?>"
                                                 class="btn btn-danger btn-sm mb-1"
                                                 onclick="return confirm('Yakin ingin menghapus data ini?')">
                                                 Delete
                                             </a>
 
                                             <!-- Tombol Update -->
-                                            <a href="update_form_portofolio.php?id_portofolio=<?php echo $tampil->id_portofolio; ?>"
+                                            <!-- Tombol Update mengirim ID melalui URL ke `update_form_portofolio.php`. Halaman tersebut memakai ID untuk mengambil data lama dari database. -->
+<a href="update_form_portofolio.php?id_portofolio=<?php echo $tampil->id_portofolio; ?>"
                                                 class="btn btn-success btn-sm">
                                                 Update
                                             </a>

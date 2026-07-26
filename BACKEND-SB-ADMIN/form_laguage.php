@@ -1,13 +1,18 @@
 <?php
+// KETERANGAN ALUR DATA:
+// File ini merupakan bagian modul laguage dan terhubung dengan tabel `laguage` di database.
+
 // Tampilkan semua error PHP jika ada yang bermasalah
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 ?>
 <?php include "header.php"; ?>
 
+<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `laguage` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -37,16 +42,19 @@ include "connection.php";
 
                     <!-- Content Start -->
                     <!-- WAJIB tambahkan enctype="multipart/form-data" -->
-                    <form action="action_insert_laguage.php" method="POST" enctype="multipart/form-data">
+                    <!-- Form ini mengirim semua input ke `action_insert_laguage.php` menggunakan method POST untuk diproses ke database. -->
+<form action="action_insert_laguage.php" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group mb-3">
                             <label>Bahasa</label>
-                            <input type="text" name="bahasa" class="form-control" required>
+                            <!-- Input name="bahasa" menerima bahasa. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input type="text" name="bahasa" class="form-control" required>
                         </div>
 
                         <div class="form-group mb-3">
                             <label>Flag (Gambar Bendera)</label>
-                            <input type="file" name="flag" class="form-control" accept="image/*" required>
+                            <!-- Input name="flag" menerima flag. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
+<input type="file" name="flag" class="form-control" accept="image/*" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Simpan</button>
