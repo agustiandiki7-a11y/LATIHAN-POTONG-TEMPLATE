@@ -109,6 +109,6 @@ if (!$select_familiar) { die("Query gagal: " . mysqli_error($koneksi)); }
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <?php include "bottom.php"; ?>
+    <?php include "buttom.php"; ?>
 </body>
 </html>

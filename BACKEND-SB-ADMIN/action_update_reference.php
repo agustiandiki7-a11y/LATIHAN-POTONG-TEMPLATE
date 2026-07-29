@@ -13,8 +13,7 @@ $result = mysqli_query($koneksi, $query);
 
 if ($result) {
     header("Location: tabel_referece.php");
-    exit();
 } else {
-    die("Gagal mengupdate data: " . mysqli_error($koneksi));
+    echo "Gagal mengupdate data: " . mysqli_error($koneksi);
 }
 ?>

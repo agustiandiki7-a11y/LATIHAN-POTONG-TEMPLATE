@@ -36,30 +36,31 @@ $mobile = mysqli_fetch_object($select_id);
 
                 <form action="action_update_mobile.php" method="POST">
 
-                    <!-- Menyimpan ID -->
+                    <!-- DIPERBAIKI: Typo 'id_moble' diganti jadi 'id_mobile' -->
                     <input
                         type="hidden"
-                        name="id_moble"
+                        name="id_mobile"
                         value="<?= $mobile->id_mobile ?>">
 
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label>Nama Mobile</label>
                         <input
                             type="text"
                             name="nama"
                             class="form-control"
-                            value="<?= $mobile->nama ?>"
+                            value="<?= htmlspecialchars($mobile->nama) ?>"
                             required>
                     </div>
 
-                    <div class="form-group">
-                        <label>Icon</label>
+                    <div class="form-group mb-3">
+                        <label>Icon Class (Contoh: fas fa-mobile-alt / fa fa-phone)</label>
                         <input
                             type="text"
                             name="icon"
                             class="form-control"
-                            value="<?= $mobile->icon ?>"
+                            value="<?= htmlspecialchars($mobile->icon) ?>"
                             required>
+                        <small class="text-muted">Preview Icon Saat Ini: <i class="<?= $mobile->icon ?>"></i></small>
                     </div>
 
                     <br>

@@ -2,36 +2,44 @@
 // KETERANGAN ALUR DATA:
 // File ini merupakan bagian modul job dan terhubung dengan tabel `job` di database.
 
-// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
-// Menerima ID unik pekerjaan yang dikirim melalui URL, biasanya dari tombol Update atau Delete pada halaman tabel.
-$id_job = $_GET['id_job'];
+// Pengecekan ID unik pekerjaan dari URL
+if (!isset($_GET['id_job']) || empty($_GET['id_job'])) {
+    header("Location: tabel_job.php");
+    exit();
+}
+
+$id_job = mysqli_real_escape_string($koneksi, $_GET['id_job']);
 
 $select_id = mysqli_query($koneksi, "
-    // Query SELECT mengambil data dari tabel `job`. Hasilnya dipakai untuk mengisi tabel HTML atau form update.
     SELECT * FROM job 
     WHERE id_job = '$id_job'
 ");
 
-// Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman.
+// Mengambil satu baris hasil query agar setiap field database dapat dipanggil
 $job = mysqli_fetch_object($select_id);
+
+if (!$job) {
+    echo "<script>alert('Data job tidak ditemukan!'); window.location.href='tabel_job.php';</script>";
+    exit();
+}
 ?>
 
-<?php include "header.php" ?>
+<?php include "header.php"; ?>
 
 <!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `job` pada database. -->
 <body id="page-top">
 
     <div id="wrapper">
 
-        <?php include "sidebar.php" ?>
+        <?php include "sidebar.php"; ?>
 
         <div id="content-wrapper" class="d-flex flex-column">
 
             <div id="content">
 
-                <?php include "topbar.php" ?>
+                <?php include "topbar.php"; ?>
 
                 <div class="container-fluid">
 
@@ -39,56 +47,57 @@ $job = mysqli_fetch_object($select_id);
                         <h1 class="h3 mb-0 text-gray-800">Job</h1>
                     </div>
 
-                    <!-- Form ini mengirim semua input ke `action_update_job.php` menggunakan method POST untuk diproses ke database. -->
-<form action="action_update_job.php" method="post">
+                    <form action="action_update_job.php" method="post">
 
-                        <!-- Input name="id_job" menerima ID unik pekerjaan. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
-<input type="hidden"
-                            name="id_job"
-                            value="<?php echo $job->id_training ?>">
+                        <!-- DIPERBAIKI: Menggunakan $job->id_job (Bukan id_training) -->
+                        <input type="hidden"
+                               name="id_job"
+                               value="<?php echo $job->id_job; ?>">
 
                         <div class="mb-3">
                             <label class="form-label">Profession</label>
-
-                            <!-- Input name="nama_pekerjaan" menerima nama pekerjaan. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
-<input type="text"
-                                class="form-control"
-                                name="nama_pekerjaan"
-                                value="<?php echo $job->nama_pekerjaan ?>">
+                            <input type="text"
+                                   class="form-control"
+                                   name="nama_pekerjaan"
+                                   value="<?php echo htmlspecialchars($job->nama_pekerjaan ?? $job->job ?? ''); ?>"
+                                   required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Year</label>
-
-                            <!-- Input name="tahun_pekerjaan" menerima tahun pekerjaan. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
-<input type="text"
-                                class="form-control"
-                                name="tahun_pekerjaan"
-                                value="<?php echo $job->tahun_training ?>">
+                            <!-- DIPERBAIKI (Baris 66): Menggunakan nama_kolom job (Bukan tahun_training) -->
+                            <input type="text"
+                                   class="form-control"
+                                   name="tahun_pekerjaan"
+                                   value="<?php echo htmlspecialchars($job->tahun_pekerjaan ?? $job->tahun_job ?? $job->tahun ?? ''); ?>"
+                                   required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Place</label>
-
-                            <!-- Input name="tempat_pekerjaan" menerima tempat pekerjaan. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
-<input type="text"
-                                class="form-control"
-                                name="tempat_pekerjaan"
-                                value="<?php echo $job->tempat_training ?>">
+                            <!-- DIPERBAIKI (Baris 77): Menggunakan nama_kolom job (Bukan tempat_training) -->
+                            <input type="text"
+                                   class="form-control"
+                                   name="tempat_pekerjaan"
+                                   value="<?php echo htmlspecialchars($job->tempat_pekerjaan ?? $job->tempat_job ?? $job->tempat ?? ''); ?>"
+                                   required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Responsibilities</label>
-
-                            <!-- Input name="deskripsi" menerima deskripsi. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. Nilai awal pada form update berasal dari data yang sebelumnya diambil dengan query SELECT. -->
-<textarea name="deskripsi"
-                                class="form-control"
-                                rows="10"><?php echo $job->deskripsi ?></textarea>
+                            <textarea name="deskripsi"
+                                      class="form-control"
+                                      rows="10"
+                                      required><?php echo htmlspecialchars($job->deskripsi ?? $job->description ?? ''); ?></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary">
                             Update
                         </button>
+                        
+                        <a href="tabel_job.php" class="btn btn-secondary">
+                            Batal
+                        </a>
 
                     </form>
 
@@ -96,12 +105,13 @@ $job = mysqli_fetch_object($select_id);
 
             </div>
 
-            <?php include "footer.php" ?>
+            <?php include "footer.php"; ?>
 
         </div>
 
     </div>
 
-    <?php include "buttom.php" ?>
+    <?php include "buttom.php"; ?>
 
 </body>
+</html>

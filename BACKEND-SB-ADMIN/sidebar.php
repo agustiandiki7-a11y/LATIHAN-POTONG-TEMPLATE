@@ -4,9 +4,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <img src="foto/gg.png" alt="profile" width="50" height="50" class="rounded-circle"   >
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Profile<sup>cv</sup></div>
     </a>
 
     <!-- Divider -->
@@ -38,9 +38,9 @@
 
     <!-- 2. Skill -->
     <li class="nav-item">
-        <a class="nav-link" href="index.php">
+        <a class="nav-link" href="tabel_skill.php">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>sekil</span>
+            <span>sekill</span>
         </a>
     </li>
 
@@ -71,7 +71,7 @@
     <!-- 6. Language -->
    <!-- 6. Language -->
 <li class="nav-item">
-    <a class="nav-link" href="table_laguage.php">
+    <a class="nav-link" href="tabel_language.php">
         <i class="fas fa-fw fa-language"></i>
         <span>language</span>
     </a>
@@ -87,7 +87,7 @@
 
     <!-- 8. Reference -->
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="tabel_referece.php">
             <i class="fas fa-fw fa-bookmark"></i>
             <span>reference</span>
         </a>
@@ -120,7 +120,7 @@
 
     <!-- 12. Tools Icon -->
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="tabel_tols.php">
             <i class="fas fa-fw fa-wrench"></i>
             <span>tols icon</span>
         </a>
@@ -128,9 +128,17 @@
 
     <!-- 13. Login -->
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="tabel_login.php">
             <i class="fas fa-fw fa-sign-in-alt"></i>
             <span>login</span>
+        </a>
+    </li>
+
+       <li class="nav-item">
+        <a class="nav-link" href="logout.php">
+            <i class="fas fa-fw fa-key  -in-alt"></i>
+            <span>logout
+            </span>
         </a>
     </li>
 
@@ -142,11 +150,5 @@
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 
-    <!-- Sidebar Message -->
-    <div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-    </div>
 
 </ul>

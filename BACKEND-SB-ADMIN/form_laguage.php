@@ -48,13 +48,13 @@ include "connection.php";
                         <div class="form-group mb-3">
                             <label>Bahasa</label>
                             <!-- Input name="bahasa" menerima bahasa. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
-<input type="text" name="bahasa" class="form-control" required>
+<input type="hidden" name="id_language" value="<?= $data->id_language ?>">
                         </div>
 
                         <div class="form-group mb-3">
                             <label>Flag (Gambar Bendera)</label>
                             <!-- Input name="flag" menerima flag. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
-<input type="file" name="flag" class="form-control" accept="image/*" required>
+<input type="hidden" name="id_language" value="<?= $data->id_language ?>">
                         </div>
 
                         <button type="submit" class="btn btn-primary">Simpan</button>

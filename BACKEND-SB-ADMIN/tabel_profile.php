@@ -49,9 +49,7 @@ if (!$select_profile) { die("Query gagal: " . mysqli_error($koneksi)); }
 
                     <!-- Tombol menuju halaman tambah profile -->
                     <!-- Tombol Add membuka `form_profile.php` agar pengguna dapat mengisi data baru sebelum disimpan ke database. -->
-<a href="form_profile.php" class="btn btn-info mb-2">
-                        Add
-                    </a>
+
 
                     <!-- Membuat tabel profile -->
                     <div class="table-responsive">
@@ -122,19 +120,6 @@ if (!$select_profile) { die("Query gagal: " . mysqli_error($koneksi)); }
                                             <!-- Tombol Delete -->
                                             <!-- Mengirim id_profile ke delete_profile.php -->
                                             <!-- Tombol Delete mengirim ID melalui URL ke `delete_profile.php`. ID itu dipakai untuk menentukan data database yang dihapus. -->
-<a href="delete_profile.php?id_profile=<?= $tampil->id_profile; ?>"
-                                                class="btn btn-danger"
-                                                onclick="return confirm('Yakin ingin menghapus data ini?')">
-                                                Delete
-                                            </a>
-
-                                            <!-- Tombol Update -->
-                                            <!-- Mengirim id_profile ke update_profile.php -->
-                                            <!-- Tombol Update Profile yang Benar -->
-                                            <!-- Tombol Update mengirim ID melalui URL ke `update_form_profile.php`. Halaman tersebut memakai ID untuk mengambil data lama dari database. -->
-<a href="update_form_profile.php?id_profile=<?php echo $tampil->id_profile; ?>" class="btn btn-success btn-sm">
-                                                Update
-                                            </a>
 
                                         </td>
 
