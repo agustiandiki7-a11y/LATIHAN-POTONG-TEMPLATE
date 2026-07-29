@@ -1,15 +1,9 @@
 <?php
-// KETERANGAN ALUR DATA:
-// File ini merupakan bagian modul profile dan terhubung dengan tabel `profile` di database.
-
 // Memanggil file koneksi database
-// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
 
 // Mengambil semua data dari tabel profile
-// Query SELECT mengambil data dari tabel `profile`. Hasilnya dipakai untuk mengisi tabel HTML atau form update.
 $select_profile = mysqli_query($koneksi, "SELECT * FROM profile");
-if (!$select_profile) { die("Query gagal: " . mysqli_error($koneksi)); }
 
 // Mengecek apakah query berhasil
 
@@ -17,7 +11,6 @@ if (!$select_profile) { die("Query gagal: " . mysqli_error($koneksi)); }
 
 <?php include "header.php"; ?>
 
-<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `profile` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -48,8 +41,6 @@ if (!$select_profile) { die("Query gagal: " . mysqli_error($koneksi)); }
                     </div>
 
                     <!-- Tombol menuju halaman tambah profile -->
-                    <!-- Tombol Add membuka `form_profile.php` agar pengguna dapat mengisi data baru sebelum disimpan ke database. -->
-
 
                     <!-- Membuat tabel profile -->
                     <div class="table-responsive">
@@ -65,7 +56,7 @@ if (!$select_profile) { die("Query gagal: " . mysqli_error($koneksi)); }
                                     <th scope="col">Phone</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Address</th>
-                                    <th scope="col">LinkedIn</th>
+                                    <th scope="col">Linkedin</th>
                                     <th scope="col">Nationality</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -75,61 +66,39 @@ if (!$select_profile) { die("Query gagal: " . mysqli_error($koneksi)); }
                             <tbody>
 
                                 <!-- Perulangan untuk menampilkan data profile -->
-                                <!-- Mengambil satu baris hasil query agar setiap field database dapat dipanggil dan ditampilkan pada halaman. -->
-                                <?php while ($tampil = mysqli_fetch_object($select_profile)) : ?>
-
+                                <?php while ($tampil = mysqli_fetch_object($select_profile)): ?>
                                     <tr>
+                                        <th scope="row"><?php echo $tampil->nama; ?></th>
 
-                                        <!-- Menampilkan data dari database -->
-                                        <!-- Kolom ini diisi dari field `nama` (nama) pada tabel `profile`. Data tersedia karena query SELECT di bagian atas halaman. -->
-<td>
-                                            <?php echo $tampil->nama; ?>
-                                        </td>
-                                        <!-- Kolom ini diisi dari field `about` (deskripsi/overview) pada tabel `profile`. Data tersedia karena query SELECT di bagian atas halaman. -->
-<td>
-                                            <?php echo $tampil->about; ?>
-                                        </td>
-                                        <!-- Kolom ini diisi dari field `website` (alamat website) pada tabel `profile`. Data tersedia karena query SELECT di bagian atas halaman. -->
-<td>
-                                            <?php echo $tampil->website; ?>
-                                        </td>
-                                        <!-- Kolom ini diisi dari field `phone` (nomor telepon) pada tabel `profile`. Data tersedia karena query SELECT di bagian atas halaman. -->
-<td>
-                                            <?php echo $tampil->phone; ?>
-                                        </td>
-                                        <!-- Kolom ini diisi dari field `email` (alamat email) pada tabel `profile`. Data tersedia karena query SELECT di bagian atas halaman. -->
-<td>
-                                            <?php echo $tampil->email; ?>
-                                        </td>
-                                        <!-- Kolom ini diisi dari field `address` (alamat) pada tabel `profile`. Data tersedia karena query SELECT di bagian atas halaman. -->
-<td>
-                                            <?php echo $tampil->address; ?>
-                                        </td>
-                                        <!-- Kolom ini diisi dari field `linkedin` (akun LinkedIn) pada tabel `profile`. Data tersedia karena query SELECT di bagian atas halaman. -->
-<td>
-                                            <?php echo $tampil->linkedin; ?>
-                                        </td>
-                                        <!-- Kolom ini diisi dari field `nationalty` (kewarganegaraan) pada tabel `profile`. Data tersedia karena query SELECT di bagian atas halaman. -->
-<td>
-                                            <?php echo $tampil->nationalty; ?>
-                                        </td>
+                                        <td><?php echo $tampil->about; ?></td>
 
-                                        <!-- Kolom tombol aksi -->
+                                        <!--  WEBSITE JADI LINK -->
                                         <td>
-
-                                            <!-- Tombol Delete -->
-                                            <!-- Mengirim id_profile ke delete_profile.php -->
-                                            <!-- Tombol Delete mengirim ID melalui URL ke `delete_profile.php`. ID itu dipakai untuk menentukan data database yang dihapus. -->
-
+                                            <a href="<?php echo $tampil->website; ?>" target="_blank">
+                                                <?php echo $tampil->website; ?>
+                                            </a>
                                         </td>
 
+                                        <td><?php echo $tampil->phone; ?></td>
+                                        <td><?php echo $tampil->email; ?></td>
+                                        <td><?php echo $tampil->address; ?></td>
+
+                                        <!--  SOSMED JADI LINK -->
+                                        <td>
+                                            <a href="<?php echo $tampil->linkedin; ?>" target="_blank">
+                                                <?php echo $tampil->linkedin; ?>
+                                            </a>
+                                        </td>
+
+                                        <td><?php echo $tampil->nationalty; ?></td>
+
+                                        <td>
+                                            <a href="update_form_profile.php?id_profile=<?php echo $tampil->id_profile; ?>"
+                                                class="btn btn-success">Update</a>
+                                        </td>
                                     </tr>
-
-                                    <!-- Mengakhiri perulangan -->
                                 <?php endwhile; ?>
-
                             </tbody>
-
                         </table>
 
                     </div>
@@ -152,7 +121,7 @@ if (!$select_profile) { die("Query gagal: " . mysqli_error($koneksi)); }
     <!-- End Page Wrapper -->
 
     <!-- Scroll to Top Button -->
-    <?php include "buttom.php"; ?>
+    <?php include "bottom.php"; ?>
 
 </body>
 

@@ -128,7 +128,7 @@ if (!$select_mobile) {
 
     </div>
 
-    <?php include "script.php" ?>
+   <?php include "buttom.php"; ?>
 
 </body>
 
