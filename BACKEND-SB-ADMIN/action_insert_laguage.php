@@ -16,7 +16,7 @@ move_uploaded_file($_FILES['flag']['tmp_name'], $path . $vflagimg);
 
 // Sesuaikan nama tabel 'laguage' / 'language' dengan nama tabel di database kamu
 $sql_insert = mysqli_query($koneksi, "
-    INSERT INTO laguage
+    INSERT INTO language
     (bahasa, flag)
     VALUES
     ('$vbahasa', '$vflagimg') 
@@ -24,6 +24,6 @@ $sql_insert = mysqli_query($koneksi, "
 
 if ($sql_insert) {
     // Setelah proses selesai, pengguna diarahkan ke ` table_laguage.php` agar hasil terbaru dapat dilihat.
-    header("Location: table_laguage.php");
+    header("Location: tabel_language.php");
 } 
 ?>

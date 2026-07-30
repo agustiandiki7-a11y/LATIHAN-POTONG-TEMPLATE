@@ -1,6 +1,6 @@
 <?php
 // KETERANGAN ALUR DATA:
-// File ini merupakan bagian modul laguage dan terhubung dengan tabel `laguage` di database.
+// File ini merupakan bagian modul language dan terhubung dengan tabel `laguage` di database.
 
 // Tampilkan semua error PHP jika ada yang bermasalah
 ini_set('display_errors', 1);
@@ -43,18 +43,22 @@ include "connection.php";
                     <!-- Content Start -->
                     <!-- WAJIB tambahkan enctype="multipart/form-data" -->
                     <!-- Form ini mengirim semua input ke `action_insert_laguage.php` menggunakan method POST untuk diproses ke database. -->
-<form action="action_insert_laguage.php" method="POST" enctype="multipart/form-data">
+<form action="action_insert_language.php" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group mb-3">
                             <label>Bahasa</label>
                             <!-- Input name="bahasa" menerima bahasa. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
-<input type="hidden" name="id_language" value="<?= $data->id_language ?>">
+<!-- Baris 51 -->
+<input type="text" name="bahasa" value="<?php echo $row['bahasa']; ?>">
+
+
                         </div>
 
                         <div class="form-group mb-3">
                             <label>Flag (Gambar Bendera)</label>
                             <!-- Input name="flag" menerima flag. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
-<input type="hidden" name="id_language" value="<?= $data->id_language ?>">
+<!-- Baris 57 -->
+<input type="file" name="flag" value="<?php echo $row['flag']; ?>">
                         </div>
 
                         <button type="submit" class="btn btn-primary">Simpan</button>

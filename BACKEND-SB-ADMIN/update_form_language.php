@@ -10,7 +10,7 @@ if (!isset($_GET['id_language']) || empty($_GET['id_language'])) {
 $id_language = mysqli_real_escape_string($koneksi, $_GET['id_language']);
 
 // Mengambil data dari tabel `laguage` berdasarkan `id_language`
-$query = mysqli_query($koneksi, "SELECT * FROM laguage WHERE id_language='$id_language'");
+$query = mysqli_query($koneksi, "SELECT * FROM language WHERE id_language='$id_language'");
 $data  = mysqli_fetch_object($query);
 
 if (!$data) {

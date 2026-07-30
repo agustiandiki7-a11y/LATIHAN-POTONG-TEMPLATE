@@ -21,7 +21,7 @@ if (isset($_POST['id_language'])) {
         if (move_uploaded_file($_FILES['flag']['tmp_name'], $target_file)) {
             
             // DIPERBAIKI: Menggunakan nama tabel `laguage` (sesuai phpMyAdmin)
-            $old_query = mysqli_query($koneksi, "SELECT flag FROM laguage WHERE id_language='$id_language'");
+            $old_query = mysqli_query($koneksi, "SELECT flag FROM language WHERE id_language='$id_language'");
             $old_data  = mysqli_fetch_object($old_query);
             
             // Hapus foto lama jika ada di folder
@@ -31,7 +31,7 @@ if (isset($_POST['id_language'])) {
 
             // DIPERBAIKI: Menggunakan nama tabel `laguage`
             $update = mysqli_query($koneksi, "
-                UPDATE laguage SET
+                UPDATE language SET
                     bahasa = '$vbahasa',
                     flag   = '$vflagimg'
                 WHERE id_language = '$id_language'
@@ -45,7 +45,7 @@ if (isset($_POST['id_language'])) {
         // Jika tidak upload gambar baru, update nama bahasanya saja
         // DIPERBAIKI: Menggunakan nama tabel `laguage`
         $update = mysqli_query($koneksi, "
-            UPDATE laguage SET
+            UPDATE language SET
                 bahasa = '$vbahasa'
             WHERE id_language = '$id_language'
         ");

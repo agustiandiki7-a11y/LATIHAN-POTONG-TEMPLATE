@@ -3,7 +3,7 @@ include "connection.php";
 
 // Query disesuaikan dengan nama tabel di phpMyAdmin (`laguage`)
 $select_id_language = mysqli_query($koneksi, "
-    SELECT * FROM laguage
+    SELECT * FROM language
     ORDER BY id_language DESC
 ");
 
