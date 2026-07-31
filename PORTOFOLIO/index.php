@@ -85,7 +85,7 @@
        ?>
        <!-- end -->
 
-<img src="/BACKEND-SB-ADMIN/foto/1785123799.jpg <?php echo $sb->sidebar_foto ?>" alt="" class="img-fluid rounded-circle">      <!-- <h1 class="text-light"><a href="index.html">Alex Smith</a><h1> --> 
+<img src="/BACKEND-SB-ADMIN/foto/gg.png <?php echo $sb->sidebar_foto ?>" alt="" class="img-fluid rounded-circle">      <!-- <h1 class="text-light"><a href="index.html">Alex Smith</a><h1> --> 
       <h1 class="text-light"><a href="index.php"><?php echo $p->nama ?></a></h1>
     </div>
 
@@ -117,7 +117,7 @@
     <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
       <div class="hero-container" data-aos="fade-in">
         <h2>Diki Agustian</h2>
-        <p>Saya<span class="typed" data-typed-items="bekerja keras, ramah, mudah bergaul, kreatif "></span></p>
+        <p>Saya<span class="typed" data-typed-items="bekerja keras, ramah, mudah bergaul, kreatif ">anak pkl </span></p>
       </div>
 
     </section><!-- / end Hero Section -->
@@ -140,7 +140,7 @@
 
         <div class="row">
           <div class="col-lg-4" data-aos="fade-right">
-            <img src="/BACKEND-SB-ADMIN/foto/1784865281.jpeg echo $sb->sidebar_foto ?>" class="img-fluid" alt="" width="350">
+            <img src="/BACKEND-SB-ADMIN/fotobende/indonesia-flag-png-5.jpg echo $sb->sidebar_foto ?>" class="img-fluid" alt="" width="350">
           </div>
           <div class="col-lg-8  pt-4 pt-lg-0 content" data-aos="fade-left">
             <!-- <h2>UI/UX Designer &amp; Web Developer.</h2> -->

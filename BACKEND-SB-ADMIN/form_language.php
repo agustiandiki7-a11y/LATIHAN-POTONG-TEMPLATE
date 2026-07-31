@@ -1,18 +1,5 @@
-<?php
-// KETERANGAN ALUR DATA:
-// File ini merupakan bagian modul language dan terhubung dengan tabel `laguage` di database.
-
-// Tampilkan semua error PHP jika ada yang bermasalah
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-// Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
-include "connection.php";
-?>
 <?php include "header.php"; ?>
 
-<!-- KETERANGAN TAMPILAN DAN SUMBER DATA: Halaman ini menampilkan/mengolah data dari tabel `laguage` pada database. -->
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -20,7 +7,6 @@ include "connection.php";
 
         <!-- Sidebar -->
         <?php include "sidebar.php"; ?>
-        <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -30,58 +16,43 @@ include "connection.php";
 
                 <!-- Topbar -->
                 <?php include "topbar.php"; ?>
-                <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Add Language</h1>
-                    </div>
+                    <h1 class="h3 mb-4 text-gray-800">languange</h1>
 
-                    <!-- Content Start -->
-                    <!-- WAJIB tambahkan enctype="multipart/form-data" -->
-                    <!-- Form ini mengirim semua input ke `action_insert_laguage.php` menggunakan method POST untuk diproses ke database. -->
-<form action="action_insert_language.php" method="POST" enctype="multipart/form-data">
+                    <!-- Form Tambah -->
+                    <form action="action_insert_laguage.php" method="POST">
 
-                        <div class="form-group mb-3">
-                            <label>Bahasa</label>
-                            <!-- Input name="bahasa" menerima bahasa. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
-<!-- Baris 51 -->
-<input type="text" name="bahasa" value="<?php echo $row['bahasa']; ?>">
-
-
+                        <div class="form-group mb-4">
+                            <label class="text-secondary">bahasa</label>
+                            <input type="text" name="flag" class="form-control" required>
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label>Flag (Gambar Bendera)</label>
-                            <!-- Input name="flag" menerima flag. Saat Submit ditekan, nilainya dikirim ke file action melalui POST. -->
-<!-- Baris 57 -->
-<input type="file" name="flag" value="<?php echo $row['flag']; ?>">
+                        <div class="form-group mb-4">
+                            <label class="text-secondary">flag</label>
+                            <input type="file" name="flag" class="form-control" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary px-4 mt-2">Submit</button>
+
                     </form>
-                    <!-- Content End -->
 
                 </div>
-                <!-- /.container-fluid -->
+                <!-- End Container Fluid -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End Main Content -->
 
             <!-- Footer -->
             <?php include "footer.php"; ?>
-            <!-- End of Footer -->
 
         </div>
-        <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
     <?php include "buttom.php"; ?>
 
 </body>
