@@ -40,40 +40,10 @@ if (isset($_POST['submit'])) {
                 )
             ");
 
-            if ($query) {
-                echo "<script>
-                        alert('Data berhasil ditambahkan');
-                        window.location='tabel_portofolio.php';
-                      </script>";
-            } else {
-                echo "<script>
-                        alert('Gagal menyimpan data');
-                        window.history.back();
-                      </script>";
-            }
-
-        } else {
-
-            echo "<script>
-                    alert('Upload gambar gagal');
-                    window.history.back();
-                  </script>";
-
-        }
-
-    } else {
-
-        echo "<script>
-                alert('Silakan pilih gambar');
-                window.history.back();
-              </script>";
-
     }
 
 } else {
 
     header("Location: form_portofolio.php");
-    exit();
-
 }
 ?>
