@@ -70,8 +70,8 @@ if (isset($_SESSION['status']) && $_SESSION['status'] === "login") {
                                     <!-- Form Login -->
                                   <form class="user" action="process_login.php" method="POST">
                                         <div class="form-group">
-                                            <input type="text" name="username" class="form-control form-control-user"
-                                                placeholder="Enter Username..." required>
+                                            <input type="text" name="email" class="form-control form-control-user"
+                                                placeholder="Enter Email..." required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password" class="form-control form-control-user"

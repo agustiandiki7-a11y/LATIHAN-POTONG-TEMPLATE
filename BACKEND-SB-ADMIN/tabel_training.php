@@ -4,7 +4,10 @@
 
 // Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
-
+session_start();
+if ($_SESSION['status'] !="login"){
+    header("location:login.php?pesan=belum_login");
+}
 // Query SELECT mengambil data dari tabel `training`. Hasilnya dipakai untuk mengisi tabel HTML atau form update.
 $select_training = mysqli_query($koneksi, "SELECT * FROM training ORDER BY id_training DESC");
 if (!$select_training) {

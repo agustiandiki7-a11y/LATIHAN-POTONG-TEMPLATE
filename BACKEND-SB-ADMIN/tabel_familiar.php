@@ -4,6 +4,10 @@
 
 // Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
+session_start();
+if ($_SESSION['status'] !="login"){
+    header("location:login.php?pesan=belum_login");
+}
 // Perintah SQL ambil data familiar
 // Query SELECT mengambil data dari tabel `familiar`. Hasilnya dipakai untuk mengisi tabel HTML atau form update.
 $select_familiar = mysqli_query($koneksi, "SELECT * FROM familiar ORDER BY id_familiar DESC");

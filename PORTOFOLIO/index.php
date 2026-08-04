@@ -27,141 +27,677 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-
-  <!-- link icon yg didapat dari devicon.dev --> 
+  <!-- link icon yg didapat dari devicon.dev -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@2.15.1/devicon.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <!-- tooltip start -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" 
-    integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"
+    integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <style>
-      #hero:before {
-        content:"";
-        position: absolute;
-        bottom: 0;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1;
+
+  <style>
+    /* CSS UTAMA SIDEBAR & LAYOUT */
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 300px;
+      transition: all ease-in-out 0.5s;
+      z-index: 9997;
+      padding: 0 15px;
+      background: #040b14;
+      overflow-y: auto;
+    }
+
+    #main,
+    main,
+    #hero {
+      margin-left: 300px !important;
+    }
+
+    #hero {
+      width: calc(100% - 300px) !important;
+    }
+
+    @media (max-width: 1199px) {
+      #header {
+        left: -300px;
       }
-    </style>
+
+      #main,
+      main,
+      #hero {
+        margin-left: 0 !important;
+        width: 100% !important;
+      }
+    }
+
+    /* Memastikan menu navigasi sidebar tampil dengan benar */
+    .nav-menu,
+    .navmenu {
+      padding-top: 30px;
+    }
+
+    .nav-menu ul,
+    .navmenu ul {
+      list-style: none;
+      padding: 0 20px;
+      margin: 0;
+    }
+
+    .nav-menu ul li a,
+    .navmenu ul li a {
+      display: flex;
+      align-items: center;
+      color: #a8a9b4;
+      padding: 12px 15px;
+      margin-bottom: 8px;
+      transition: 0.3s;
+      font-size: 15px;
+      text-decoration: none;
+    }
+
+    .nav-menu ul li a i,
+    .navmenu ul li a i {
+      font-size: 20px;
+      padding-right: 15px;
+      color: #a8a9b4 !important;
+    }
+
+    .nav-menu ul li a:hover,
+    .nav-menu ul li a.active,
+    .nav-menu ul li a:focus {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .nav-menu ul li a:hover i,
+    .nav-menu ul li a.active i,
+    .nav-menu ul li a:focus i {
+      color: #149ddd !important;
+    }
+
+    /* Styling Kotak Profil & Foto Sidebar */
+    .sidebar-profile-box {
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .profile-img-container {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 12px auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sidebar-profile-box .text-light {
+      font-size: 30px;
+      margin-top: 5px;
+
+    }
+
+    .sidebar-profile-box .text-light a {
+      text-decoration: none;
+      color: #149ddd;
+    }
+
+    /* STYLING HERO SECTION DENGAN LATAR BELAKANG FOTO */
+    #hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Elemen pembungkus foto latar belakang */
+    .hero-bg-dynamic {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      z-index: 1;
+    }
+
+    /* Lapisan transparan gelap di atas foto agar teks nama & deskripsi lebih kontras */
+    #hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(4, 11, 20, 0.65);
+      z-index: 2;
+    }
+
+    /* Teks di dalam hero section */
+    .hero-container {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero-container h2 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .hero-container p {
+      font-size: 24px;
+      color: #fff;
+    }
+
+    /* Styling Garis Timeline Resume */
+    .resume .resume-title {
+      font-size: 26px;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      color: #050d18;
+    }
+
+    .resume .resume-item {
+      padding: 0 0 20px 20px;
+      margin-top: -2px;
+      border-left: 2px solid #149ddd;
+      position: relative;
+    }
+
+    .resume .resume-item h4 {
+      line-height: 1.8;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-family: "Poppins", sans-serif;
+      color: #050d18;
+      margin-bottom: 10px;
+    }
+
+    .resume .resume-item h5 {
+      font-size: 16px;
+      background: #e4f0f8;
+      padding: 5px 15px;
+      display: inline-block;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #050d18;
+    }
+
+    .resume .resume-item ul {
+      padding-left: 20px;
+    }
+
+    .resume .resume-item ul li {
+      padding-bottom: 10px;
+    }
+
+    /* Titik Lingkaran di Garis Timeline */
+    .resume .resume-item::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50px;
+      left: -9px;
+      top: 0;
+      background: #fff;
+      border: 2px solid #149ddd;
+    }
+
+    /* Styling Utama Portfolio & Efek Hover */
+    .portfolio .portfolio-item {
+      margin-bottom: 30px;
+    }
+
+    .portfolio .portfolio-wrap {
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border-radius: 8px;
+    }
+
+    .portfolio .portfolio-wrap::before {
+      content: "";
+      background: rgba(4, 11, 20, 0.6);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: all ease-in-out 0.3s;
+      z-index: 2;
+      opacity: 0;
+    }
+
+    .portfolio .portfolio-wrap img {
+      transition: 0.3s;
+    }
+
+    /* Tombol Ikon (Zoom & Link) di Tengah Gambar */
+    .portfolio .portfolio-links {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      text-align: center;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all ease-in-out 0.3s;
+    }
+
+    .portfolio .portfolio-links a {
+      color: #fff;
+      font-size: 20px;
+      background: rgba(20, 157, 221, 0.75);
+      text-align: center;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: 0.3s;
+      margin: 0 4px;
+    }
+
+    .portfolio .portfolio-links a:hover {
+      background: #149ddd;
+    }
+
+    /* Memunculkan Efek Saat Kursor Diarahkan (Hover) */
+    .portfolio .portfolio-wrap:hover::before {
+      opacity: 1;
+    }
+
+    .portfolio .portfolio-wrap:hover .portfolio-links {
+      opacity: 1;
+    }
+
+    .portfolio .portfolio-wrap:hover img {
+      transform: scale(1.1);
+    }
+
+    /* ================================================= */
+    /* 1. CSS UTAMA SIDEBAR & LAYOUT HALAMAN             */
+    /* ================================================= */
+    body {
+      font-family: "Open Sans", sans-serif;
+      color: #272829;
+      background-color: #f5f8fd;
+    }
+
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 300px;
+      transition: all ease-in-out 0.5s;
+      z-index: 9997;
+      padding: 0 15px;
+      background: #040b14;
+      overflow-y: auto;
+    }
+
+    #main {
+      margin-left: 300px !important;
+    }
+
+    @media (max-width: 1199px) {
+      #header {
+        left: -300px;
+      }
+
+      #main,
+      #hero {
+        margin-left: 0 !important;
+        width: 100% !important;
+      }
+    }
+
+    /* ================================================= */
+    /* 2. PENGATURAN JARAK & SECTION UTAMA (PENTING)     */
+    /* ================================================= */
+    section {
+      padding: 60px 0;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    section.section-bg {
+      background: #f5f8fd;
+    }
+
+    .container {
+      width: 100%;
+      padding-right: var(--bs-gutter-x, 0.75rem);
+      padding-left: var(--bs-gutter-x, 0.75rem);
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    /* Styling Judul Section ala iPortfolio */
+    .section-title {
+      padding-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      position: relative;
+      color: #173b6c;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: #149ddd;
+      bottom: 0;
+      left: 0;
+    }
+
+    .section-title p {
+      margin-bottom: 0;
+    }
+
+    /* ================================================= */
+    /* 3. STYLING SECTION OVERVIEW / ABOUT               */
+    /* ================================================= */
+    .about .content h3 {
+      font-weight: 700;
+      font-size: 26px;
+      color: #173b6c;
+    }
+
+    .about ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .about ul li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .about ul li i {
+      font-size: 16px;
+      margin-right: 5px;
+      color: #149ddd;
+      line-height: 0;
+    }
+
+    .about ul li strong {
+      margin-right: 10px;
+    }
+
+    /* ================================================= */
+    /* 4. STYLING SKILLS SECTION                         */
+    /* ================================================= */
+    .skills .description {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .skills h6 {
+      font-weight: 600;
+      font-size: 14px;
+      color: #728394;
+      text-transform: uppercase;
+      margin-top: 15px;
+    }
+
+    /* ================================================= */
+    /* 5. STYLING RESUME & TIMELINE                      */
+    /* ================================================= */
+    .resume .resume-title {
+      font-size: 26px;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      color: #050d18;
+    }
+
+    .resume .resume-item {
+      padding: 0 0 20px 20px;
+      margin-top: -2px;
+      border-left: 2px solid #149ddd;
+      position: relative;
+    }
+
+    .resume .resume-item h4 {
+      line-height: 1.8;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #050d18;
+      margin-bottom: 10px;
+    }
+
+    .resume .resume-item h5 {
+      font-size: 14px;
+      background: #e4f0f8;
+      padding: 5px 15px;
+      display: inline-block;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #149ddd;
+      border-radius: 4px;
+    }
+
+    .resume .resume-item ul {
+      padding-left: 20px;
+    }
+
+    .resume .resume-item ul li {
+      padding-bottom: 10px;
+    }
+
+    .resume .resume-item::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50px;
+      left: -9px;
+      top: 0;
+      background: #fff;
+      border: 2px solid #149ddd;
+    }
+
+    /* ================================================= */
+    /* 6. STYLING MENU NAVIGASI & SIDEBAR                */
+    /* ================================================= */
+    .nav-menu ul {
+      list-style: none;
+      padding: 0 20px;
+      margin: 0;
+    }
+
+    .nav-menu ul li a {
+      display: flex;
+      align-items: center;
+      color: #a8a9b4;
+      padding: 12px 15px;
+      margin-bottom: 8px;
+      transition: 0.3s;
+      font-size: 15px;
+      text-decoration: none;
+    }
+
+    .nav-menu ul li a i {
+      font-size: 20px;
+      padding-right: 15px;
+      color: #6f7180;
+    }
+
+    .nav-menu ul li a:hover,
+    .nav-menu ul li a.active {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-menu ul li a:hover i,
+    .nav-menu ul li a.active i {
+      color: #149ddd;
+    }
+  </style>
 </head>
-    
+
 <body>
   <?php
   include "../BACKEND-SB-ADMIN/connection.php";
-  // FROM "profile" di bwh ini adl nama tabel di dlm database[cite: 1]
+
+  // Ambil data profile dari database
   $tampil_profile = mysqli_query($koneksi, "SELECT * FROM profile");
   $p = mysqli_fetch_object($tampil_profile);
+
+  // Ambil data sidebar foto agar tidak error di awal
+  $tampil_sidebar_Foto = mysqli_query($koneksi, "SELECT * FROM sidebar_foto");
+  $sb = mysqli_fetch_object($tampil_sidebar_Foto);
   ?>
 
   <!--- ==== Mobile nav toggle button === -->
   <i class="header-toggle bi bi-list d-xl-none"></i>
-   
+
   <!-- ==== header ==== -->
+
   <header id="header">
-    <div class="d-flex flex-column">
+    <?php
+    $tampil_sidebar_Foto = mysqli_query($koneksi, "SELECT * FROM sidebar_foto");
+    $sb = mysqli_fetch_object($tampil_sidebar_Foto);
+    ?>
 
-    <div class="profile">
-      <!-- menampilkan data foto sidebAR START -->
-       <?php 
-       include "../BACKEND-SB-ADMIN/connection.php";
-       // FROM sidebar_foto di bwh ini adl nama tabel di dlm database[cite: 1]
-       $tampil_sidebar_Foto = mysqli_query($koneksi, "SELECT * FROM sidebar_foto");
-       $sb = mysqli_fetch_object($tampil_sidebar_Foto);
-       ?>
-       <!-- end -->
-
-<img src="/BACKEND-SB-ADMIN/foto/gg.png <?php echo $sb->sidebar_foto ?>" alt="" class="img-fluid rounded-circle">      <!-- <h1 class="text-light"><a href="index.html">Alex Smith</a><h1> --> 
-      <h1 class="text-light"><a href="index.php"><?php echo $p->nama ?></a></h1>
+    <div class="sidebar-profile-box">
+      <div class="profile-img-container">
+        <img src="../BACKEND-SB-ADMIN/foto/gg.png" alt="Foto Profil" class="profile-img">
+      </div>
+      <h1 class="text-light">
+        <a href="index.php"><?php echo isset($p->nama) ? $p->nama : ''; ?></a>
+      </h1>
     </div>
 
+    <!-- Ikon Sosial Media di Bawah Nama -->
     <div class="social-links mt-3 text-center">
-     <!-- <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-      <a href="#" class="google-plus"><i class="bi bi-skype"></i></a> --> 
-      <a href="<?php echo $p->linkedin ?>" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
+      <a href="https://x.com/Dikiagu20701" class="twitter"><i class="bi bi-twitter-x"></i></a>
+      <a href="https://www.facebook.com/diki.giop" class="facebook"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.instagram.com/heydiki__/" class="instagram"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.skype.com" class="google-plus"><i class="bi bi-skype"></i></a>
+      <a href="<?php echo isset($p->linkedin) ? $p->linkedin : 'c'; ?>" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
     </div>
-    
-
+    <!-- Menu Navigasi Samping Lengkap -->
     <nav id="navbar" class="nav-menu navbar">
       <ul>
-        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i>Home</a></li>
-        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> Overview</a></li>
-        <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-user"></i> Proficiency</a></li>
-        <li><a href="#education" class="nav-link scrollto"><i class="bx bx-file-blank"></i> Education</a></li>
-         <li><a href="#experience" class="nav-link scrollto"><i class="bx bx-file-blank"></i> Experience</a></li>
-        <li><a href="#portfolio"  class="nav-link scrollto"><i class="bx bx-book-content"></i> Portfolio</a></li>
-        <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> Referees</a></li>
-       <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> contact</a></li> -->
+        <li><a href="#hero" class="nav-link scrollto"><i class="bi bi-house"></i> <span>Home</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="bi bi-person"></i> <span>Overview</span></a></li>
+        <li><a href="#skills" class="nav-link scrollto"><i class="bi bi-file-earmark-text"></i> <span>Resume</span></a></li>
+        <li><a href="#portfolio" class="nav-link scrollto"><i class="bi bi-book"></i> <span>Portfolio</span></a></li>
+        <li><a href="#services" class="nav-link scrollto"><i class="bi bi-server"></i> <span>Referees</span></a></li>
+        <li><a href="#contact" class="nav-link scrollto"><i class="bi bi-envelope"></i> <span>Contact</span></a></li>
       </ul>
-    </nav><!-- .nav-menu -->
-  </div>
-  </header><!-- end header --> 
+    </nav>
+  </header>
+  <!-- end header -->
 
-    <!-- Hero Section -->
-    <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-      <div class="hero-container" data-aos="fade-in">
-        <h2>Diki Agustian</h2>
-        <p>Saya<span class="typed" data-typed-items="bekerja keras, ramah, mudah bergaul, kreatif ">anak pkl </span></p>
-      </div>
+  <!-- Hero Section -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
 
-    </section><!-- / end Hero Section -->
+    <!-- PHP untuk mengambil data foto latar belakang dari database -->
+    <?php
+    $tampil_hero_bg = mysqli_query($koneksi, "SELECT * FROM sidebar_foto");
+    $hb = mysqli_fetch_object($tampil_hero_bg);
+    $bg_foto = isset($hb->sidebar_foto) ? $hb->sidebar_foto : 'default.jpg';
+    ?>
 
-      <main id="main">
+    <!-- Perbaikan pada style background-image agar mengambil dari database secara bersih -->
+    <div class="hero-bg-dynamic" style="background-image: url('../BACKEND-SB-ADMIN/foto/1785395865_1784865281.jpeg?php echo $bg_foto; ?>');"></div>
+
+    <div class="hero-container" dat a-aos="fade-in">
+      <h2><?php echo isset($p->nama) ? $p->nama : 'Diki Agustian'; ?></h2>
+      <p>Saya <span class="typed" data-typed-items="bekerja keras, ramah, mudah bergaul, kreatif">anak pkl</span></p>
+    </div>
+
+  </section><!-- / end Hero Section -->
+
+  <main id="main">
 
     <!-- About Section -->
     <section id="about" class="about">
       <div class="container">
 
-      <!-- Section Title -->
-      <div class="section-title">
-        <h2>Overview</h2>
-       <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. 
+        <!-- Section Title -->
+        <div class="section-title">
+          <h2>Overview</h2>
+          <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. 
         Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-        Quia fugiat sit in iste officiis commodi quidem hic quas.</p> --> 
-        <p style="text-align:justify;"><?php echo $p->about; ?></p> <br>
+        Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
+          <p style="text-align:justify;"><?php echo isset($p->about) ? $p->about : ''; ?></p> <br>
 
-      </div><!-- End Section Title -->
+        </div><!-- End Section Title -->
 
         <div class="row">
           <div class="col-lg-4" data-aos="fade-right">
-            <img src="/BACKEND-SB-ADMIN/fotobende/indonesia-flag-png-5.jpg echo $sb->sidebar_foto ?>" class="img-fluid" alt="" width="350">
+            <img src="../BACKEND-SB-ADMIN/foto/1784865173.jpeg" class="img-fluid" alt="" width="350">
           </div>
           <div class="col-lg-8  pt-4 pt-lg-0 content" data-aos="fade-left">
             <!-- <h2>UI/UX Designer &amp; Web Developer.</h2> -->
-             <div class="section-title">
+            <div class="section-title">
 
               <h2> INFORMASI PRIBADI</h2>
-             </div>
+            </div>
             <!-- <p class="fst-italic py-3">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.
-            </p> --> 
+            </p> -->
             <br>
             <div class="row">
               <div class="col-lg">
                 <ul>
-                 <!--  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May 1995</span></li> -->
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><?php echo $p->website ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span><?php echo $p->phone ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Address:</strong> <span><?php echo $p->address ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><?php echo $p->email ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Nationality:</strong> <span><?php echo $p->nationalty ?></span></li>
+                  <!--  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May 1995</span></li> -->
+                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><?php echo isset($p->website) ? $p->website : ''; ?></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span><?php echo isset($p->phone) ? $p->phone : ''; ?></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Address:</strong> <span><?php echo isset($p->address) ? $p->address : ''; ?></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><?php echo isset($p->email) ? $p->email : ''; ?></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Nationality:</strong> <span><?php echo isset($p->nationalty) ? $p->nationalty : ''; ?></span></li>
                 </ul>
               </div>
 
@@ -190,7 +726,7 @@
 
       <div class="container">
 
-       <!--  <div class="row gy-4">
+        <!--  <div class="row gy-4">
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
@@ -235,150 +771,149 @@
 
       <!-- Section Title -->
       <div class="container">
-      <div class="section-title mb-4" style="color: gray;">
-        <h2>Keterampilan IT </h2>
-        <h6 style="color: gray"> PROGRAMMING LANGUAGE & FRAMEWORKS </h6>
+        <div class="section-title mb-4" style="color: gray;">
+          <h2>Keterampilan IT </h2>
+          <h6 style="color: gray"> PROGRAMMING LANGUAGE & FRAMEWORKS </h6>
           <h4 class="title"> </h4>
-        <div class="description">
+          <div class="description">
             <?php
-            // profile adl nama tabel di database[cite: 1]
+            // profile adl nama tabel di database
             $tampil_mobile = mysqli_query($koneksi, "SELECT * FROM mobile");
             while ($m = mysqli_fetch_object($tampil_mobile)):
             ?>
-           <!-- <i style="color: grey;font-size:35px" class="<?php echo $m->icon; ?> m-3></i> -->
-           <i style="font-size:35px" class="icon-with-tooltip <?php echo $m->icon; ?> colored m-3"
-           data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $m->nama ?>"></i>
-          <?php endwhile; ?>
-    </div>
-  </div>
-      <div class="section-title mb-4">
-        <h6 style="color:gray">FAMILIAR WITH</h6>
-          <h4 class="title"></h4>
-          <div class="description"> <?php 
-                // profile adl nama tabel di database[cite: 1]
-                $tampil_familiar = mysqli_query($koneksi, "SELECT * FROM familiar");
-                while ($m = mysqli_fetch_object($tampil_familiar)):
-                ?>
-           <!-- <i style="color: grey;font-size:35px" class="<?php echo $m->icon; ?> m-3></i> -->
-           <i style="font-size:35px" class="icon-with-tooltip <?php echo $m->icon; ?> colored m-3"
-           data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $m->nama ?>"></i>
-           
-           <!-- untuk memunculkan TOOLTIP per icon dibutuhkan JaaScript as below -->
-           <!-- JavaScript start -->
- 
-          <!-- java script end -->
-          <!-- Next, we'll scrolldown to end of the body --> 
-          <?php endwhile; ?>
-
-    </div>
-  </div>
-    <div class="section-title mb-4" style="color: grey;">
-      <h6> TOOLS & PLATFORMS </h6>
-
-        <h4 class="title"> </h4>
-         <div class="description"> <?php 
-                // profile adl nama tabel di database[cite: 1]
-                $tampil_tols = mysqli_query($koneksi, "SELECT * FROM tols");
-                while ($m = mysqli_fetch_object($tampil_tols)):
-                ?>
-           <!-- <i style="color: grey;font-size:35px" class="<?php echo $m->icon; ?> m-3></i> -->
-           <i style="font-size:35px" class="icon-with-tooltip <?php echo $m->icon; ?> colored m-3"
-           data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $m->nama ?>"></i>
-        
-          <?php endwhile; ?>
-
-    </div>
-  </div>
-    <div class="section-title mt-4">
-       <h6> LANGUAGE PROFICIENTY </h6>
-       <?php 
-       // profile adl nama tabel di database[cite: 1]
-       $tampil_language = mysqli_query($koneksi, "SELECT * FROM language ORDER BY id_language DESC ");
-       while ($l = mysqli_fetch_object($tampil_language)):
-       ?>
-        <div class="row">
-          <div class="col">
-            <h6 class="skill" style="color:grey"> 
-             <?php echo $l->bahasa ?> </h6>
+              <!-- <i style="color: grey;font-size:35px" class="<?php echo $m->icon; ?> m-3></i> -->
+              <i style="font-size:35px" class="icon-with-tooltip <?php echo $m->icon; ?> colored m-3"
+                data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $m->nama ?>"></i>
+            <?php endwhile; ?>
+          </div>
         </div>
-        <div class="col">
+        <div class="section-title mb-4">
+          <h6 style="color:gray">FAMILIAR WITH</h6>
+          <h4 class="title"></h4>
+          <div class="description"> <?php
+                                    // profile adl nama tabel di database
+                                    $tampil_familiar = mysqli_query($koneksi, "SELECT * FROM familiar");
+                                    while ($m = mysqli_fetch_object($tampil_familiar)):
+                                    ?>
+              <!-- <i style="color: grey;font-size:35px" class="<?php echo $m->icon; ?> m-3></i> -->
+              <i style="font-size:35px" class="icon-with-tooltip <?php echo $m->icon; ?> colored m-3"
+                data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $m->nama ?>"></i>
 
-         <img src="../Backend sb-admin/fotobende/<?php echo $l->flag; ?>" alt="" class="val mb-3" width="40px">
-     </div>
-   </div>
+              <!-- untuk memunculkan TOOLTIP per icon dibutuhkan JaaScript as below -->
+              <!-- JavaScript start -->
 
- <?php endwhile; ?>
-</div>
-     <div class="section-title mt-4">
-        <h2> ADDITIONAL SKILLS </h2>
-        <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. 
-        Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. 
-        Quia fugiat sit in iste officiis commodi quidem hic quas.</p> --> 
-      </div>
-
-      <div class="row skills-content">
-
-       <div class="col-lg" data-aos="fade-up">
-
-          <!-- membuat tampilan skill menggunakan perulangan WHILE -->
-          <?php
-          include "../BACKEND-SB-ADMIN/connection.php";
-          // profile adalah nama tabel di database[cite: 1]
-          $tampil_sekill = mysqli_query($koneksi, "SELECT * FROM sekill ORDER BY id_skill DESC");
-          while ($s = mysqli_fetch_object($tampil_sekill)):
-          ?>
-
-           <span><?php echo $s->nama_skill ?></span> <br>
-          <?php endwhile; ?>
-           <!-- perulangan end -->
-           <!-- icon start -->
-           <!-- ambil iconnya dari devicon.dev dn linknya di letakkan di <HEAD> atas -->
-
-            <!-- <div class="progress">
-              <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill"><span>CSS</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill"><span>JavaScript</span> <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
+              <!-- java script end -->
+              <!-- Next, we'll scrolldown to end of the body -->
+            <?php endwhile; ?>
 
           </div>
+        </div>
+        <div class="section-title mb-4" style="color: grey;">
+          <h6> TOOLS & PLATFORMS </h6>
 
-          <div class="col-lg-6">
+          <h4 class="title"> </h4>
+          <div class="description"> <?php
+                                    // profile adl nama tabel di database
+                                    $tampil_tols = mysqli_query($koneksi, "SELECT * FROM tols");
+                                    while ($m = mysqli_fetch_object($tampil_tols)):
+                                    ?>
+              <!-- <i style="color: grey;font-size:35px" class="<?php echo $m->icon; ?> m-3></i> -->
+              <i style="font-size:35px" class="icon-with-tooltip <?php echo $m->icon; ?> colored m-3"
+                data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $m->nama ?>"></i>
 
-            <div class="progress">
-              <span class="skill"><span>PHP</span> <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+            <?php endwhile; ?>
+
+          </div>
+        </div>
+        <div class="section-title mt-4">
+          <h6> LANGUAGE PROFICIENTY </h6>
+          <?php
+          // profile adl nama tabel di database
+          $tampil_language = mysqli_query($koneksi, "SELECT * FROM language ORDER BY id_language DESC ");
+          while ($l = mysqli_fetch_object($tampil_language)):
+          ?>
+            <div class="row">
+              <div class="col">
+                <h6 class="skill" style="color:grey">
+                  <?php echo $l->bahasa ?> </h6>
+              </div>
+              <div class="col">
+
+                <img src="../BACKEND-SB-ADMIN/fotobende/indonesia-flag-png-5.jpg <?php echo $l->flag; ?>" alt="" class="val mb-3" width="40px">
               </div>
             </div>
 
-            <div class="progress">
-              <span class="skill"><span>WordPress/CMS</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
+          <?php endwhile; ?>
+        </div>
+        <div class="section-title mt-4">
+          <h2> ADDITIONAL SKILLS </h2>
+          <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. 
+        Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. 
+        Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
+        </div>
 
-            <div class="progress">
-              <span class="skill"><span>Photoshop</span> <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div> -->
+        <div class="row skills-content">
+
+          <div class="col-lg" data-aos="fade-up">
+
+            <!-- membuat tampilan skill menggunakan perulangan WHILE -->
+            <?php
+            // profile adalah nama tabel di database
+            $tampil_sekill = mysqli_query($koneksi, "SELECT * FROM sekill ORDER BY id_skill DESC");
+            while ($s = mysqli_fetch_object($tampil_sekill)):
+            ?>
+
+              <span><?php echo $s->nama_skill ?></span> <br>
+            <?php endwhile; ?>
+            <!-- perulangan end -->
+            <!-- icon start -->
+            <!-- ambil iconnya dari devicon.dev dn linknya di letakkan di <HEAD> atas -->
+
+            <!-- <div class="progress">
+             <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
+             <div class="progress-bar-wrap">
+               <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+             </div>
+           </div>
+
+           <div class="progress">
+             <span class="skill"><span>CSS</span> <i class="val">90%</i></span>
+             <div class="progress-bar-wrap">
+               <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+             </div>
+           </div>
+
+           <div class="progress">
+             <span class="skill"><span>JavaScript</span> <i class="val">75%</i></span>
+             <div class="progress-bar-wrap">
+               <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+             </div>
+           </div>
+
+         </div>
+
+         <div class="col-lg-6">
+
+           <div class="progress">
+             <span class="skill"><span>PHP</span> <i class="val">80%</i></span>
+             <div class="progress-bar-wrap">
+               <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+             </div>
+           </div>
+
+           <div class="progress">
+             <span class="skill"><span>WordPress/CMS</span> <i class="val">90%</i></span>
+             <div class="progress-bar-wrap">
+               <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+             </div>
+           </div>
+
+           <div class="progress">
+             <span class="skill"><span>Photoshop</span> <i class="val">55%</i></span>
+             <div class="progress-bar-wrap">
+               <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+             </div>
+           </div> -->
 
           </div>
 
@@ -389,326 +924,136 @@
     </section><!-- / End Skills Section -->
 
     <!-- Resume Section -->
-   <section id="resume" class="resume">
-  <div class="container">
+    <section id="resume" class="resume">
+      <div class="container">
 
-    <!-- EDUCATION -->
-    <div class="section-title">
-      <h2 id="education">Education</h2>
-    </div>
-
-    <?php
-   include "../BACKEND-SB-ADMIN/connection.php";
-    $tampil_education = mysqli_query($koneksi, "SELECT * FROM education ORDER BY id_education DESC");
-    while ($e = mysqli_fetch_object($tampil_education)):
-    ?>
-
-    <div class="resume-item">
-      <div class="row">
-
-        <div class="col-10">
-          <h4 style="color:grey;"><?php echo $e->nama_jurusan; ?></h4>
-          <p><em><?php echo $e->temapat_belajar; ?></em></p>
-          <p><?php echo $e->deskripsi; ?></p>
+        <div class="section-title">
+          <h2>Resume</h2>
+          <p>Berikut adalah latar belakang pendidikan dan pengalaman yang saya miliki.</p>
         </div>
 
-        <div class="col-2 text-end">
-          <h5 style="background:none;color:grey;">
-            <?php echo $e->tahun_belajar; ?>
-          </h5>
+        <div class="row">
+
+          <!-- Kolom Kiri (Sumary & Education) -->
+          <div class="col-lg-6" data-aos="fade-up">
+            <h3 class="resume-title">Education</h3>
+
+            <?php
+            $tampil_education = mysqli_query($koneksi, "SELECT * FROM education ORDER BY id_education DESC");
+            while ($e = mysqli_fetch_object($tampil_education)):
+            ?>
+              <div class="resume-item">
+                <h4><?php echo $e->nama_jurusan; ?></h4>
+                <h5><?php echo $e->tahun_belajar; ?></h5>
+                <p><em><?php echo $e->temapat_belajar; ?></em></p>
+                <p><?php echo $e->deskripsi; ?></p>
+              </div>
+            <?php endwhile; ?>
+
+            <!-- TRAINING (Jika ingin digabung di kiri atau buat section sendiri) -->
+            <h3 class="resume-title">Training</h3>
+            <?php
+            $tampil_training = mysqli_query($koneksi, "SELECT * FROM training ORDER BY id_training DESC");
+            while ($t = mysqli_fetch_object($tampil_training)):
+            ?>
+              <div class="resume-item">
+                <h4><?php echo $t->nama_training; ?></h4>
+                <h5><?php echo $t->tahun_training; ?></h5>
+                <p><em><?php echo $t->tempat_training; ?></em></p>
+                <p><?php echo $t->deskripsi; ?></p>
+              </div>
+            <?php endwhile; ?>
+
+          </div>
+
+          <!-- Kolom Kanan (Professional Experience) -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="resume-title">Professional Experience</h3>
+
+            <?php
+            $tampil_job = mysqli_query($koneksi, "SELECT * FROM job ORDER BY id_job DESC");
+            while ($j = mysqli_fetch_object($tampil_job)):
+            ?>
+              <div class="resume-item">
+                <h4><?php echo $j->nama_pekerjaan; ?></h4>
+                <h5><?php echo $j->tahun_pekerjaan; ?></h5>
+                <p><em><?php echo $j->tempat_pekerjaan; ?></em></p>
+                <ul>
+                  <li><?php echo $j->deskripsi; ?></li>
+                </ul>
+              </div>
+            <?php endwhile; ?>
+
+          </div>
+
         </div>
 
       </div>
-    </div>
-
-    <?php endwhile; ?>
-
-
-    <!-- TRAINING -->
-    <div class="section-title mt-5">
-      <h2>Training</h2>
-    </div>
-
-    <?php
-    $tampil_training = mysqli_query($koneksi, "SELECT * FROM training ORDER BY id_training DESC");
-    while ($t = mysqli_fetch_object($tampil_training)):
-    ?>
-
-    <div class="resume-item">
-      <div class="row">
-
-        <div class="col-10">
-          <h4 style="color:grey;"><?php echo $t->nama_training; ?></h4>
-          <p><em><?php echo $t->tempat_training; ?></em></p>
-          <p><?php echo $t->deskripsi; ?></p>
-        </div>
-
-        <div class="col-2 text-end">
-          <h5 style="background:none;color:grey;">
-            <?php echo $t->tahun_training; ?>
-          </h5>
-        </div>
-
-      </div>
-    </div>
-
-    <?php endwhile; ?>
-
-
-    <!-- EXPERIENCE -->
-    <div class="section-title mt-5">
-      <h2 id="experience">Experience</h2>
-    </div>
-
-    <?php
-    $tampil_job = mysqli_query($koneksi, "SELECT * FROM job ORDER BY id_job DESC");
-    while ($j = mysqli_fetch_object($tampil_job)):
-    ?>
-
-    <div class="resume-item">
-      <h4 style="color:grey;"><?php echo $j->nama_pekerjaan; ?></h4>
-      <h5 style="color:grey;"><?php echo $j->tahun_pekerjaan; ?></h5>
-      <p><em><?php echo $j->tempat_pekerjaan; ?></em></p>
-
-      <ul>
-        <li><?php echo $j->deskripsi; ?></li>
-      </ul>
-    </div>
-
-    <?php endwhile; ?>
-
-  </div>
-</section>
-  <!-- /End Resume Section -->
+    </section>
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section-bg">
       <div class="container">
 
-      <!-- Section Title -->
-      <div class="section-title">
-        <h2>Portfolio</h2>
-        <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. 
-        Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit
-        ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
-      </div>
-          <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-            <?php
-             include "../BACKEND-SB-ADMIN/connection.php";
-            // profile adl nama tabel di database[cite: 1]
-            $tampil_portfolio = mysqli_query($koneksi, "SELECT * FROM portfolio ORDER BY id_portfolio DESC");
-            while ($pf = mysqli_fetch_object($tampil_portfolio)):
-            ?>
-             <div class="col-lg-4 col-md-6 portfolio-item filter-web" style="width: 350px; object-fit:cover height: 25px;">
+        <!-- Section Title -->
+        <div class="section-title">
+          <h2>Portfolio</h2>
+          <p>Berikut adalah beberapa project dan karya yang telah saya buat.</p>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+          <?php
+          // Mengambil data portfolio dari database
+          $tampil_portfolio = mysqli_query($koneksi, "SELECT * FROM portfolio ORDER BY id_portfolio DESC");
+          while ($pf = mysqli_fetch_object($tampil_portfolio)):
+          ?>
+            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
               <div class="portfolio-wrap">
-                <img src="../Backend sb-admin/foto/<?php echo $pf->img ?>" class="img-fluid" alt="">
+                <img src="../BACKEND-SB-ADMIN/foto/<?php echo $pf->img ?>" class="img-fluid" alt="">
                 <div class="portfolio-links">
-                  <a href="../Backend sb-admin/foto/<?php echo $pf->img ?>" data-gallery="portfolioGallery"
-                  class="portfolio-lightbox" title="<?php echo $pf->judul_portfolio ?>"><i class="bx bx-plus"></i></a>
-                 <a href="<?php echo trim($pf->link); ?>" target="_blank" rel="noopener noreferrer" title="More Details">
-                 <i class="bx bx-link"></i>
-                 </a>
-               </div> 
-              </div>
-             </div>
-            <?php endwhile; ?>
-
-            <?php
-            // profile adl nama tabel di database[cite: 1]
-            $tampil_portfolio = mysqli_query($koneksi, "SELECT * FROM portfolio WHERE jenis = 'Web' ");
-            while ($pf = mysqli_fetch_object($tampil_portfolio)):
-            ?>
-             <div class="col-lg-4 col-md-6 portfolio-item filter-web" style="width: 350px; object-fit:cover; height: 175px;">
-              <div class="portfolio-wrap">
-                <img src="../Backend sb-admin/foto/<?php echo $pf->img ?>" class="img-fluid" alt="">
-                <div class="portfolio-links">
-                <a href="../Backend sb-admin/foto/<?php echo $pf->img ?>" data-gallery="portfolioGallery"
-                class="portfolio-lightbox" title="<?php echo $pf->judul_portfolio ?>"><i class="bx bx-plus"></i></a>
-                <a href="<?php echo $pf->link ?>" title="More Details"><i class="bx bx-link"></i></a>
-               </div> 
-              </div>
-             </div>
-            <?php endwhile; ?>
-
-           <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>App 1</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/app-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <!-- Tombol Zoom / Lightbox -->
+                  <a href="../BACKEND-SB-ADMIN/foto/<?php echo $pf->img ?>" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox" title="<?php echo isset($pf->judul_portfolio) ? $pf->judul_portfolio : ''; ?>"><i class="bx bx-plus bi bi-zoom-in"></i></a>
+                  <!-- Tombol Link Detail -->
+                  <a href="<?php echo trim($pf->link); ?>" target="_blank" rel="noopener noreferrer" title="More Details">
+                    <i class="bx bx-link bi bi-link-45deg"></i>
+                  </a>
                 </div>
               </div>
             </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/product-1.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Product 1</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/product-1.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/branding-1.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Branding 1</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/branding-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/books-1.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Books 1</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/books-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/app-2.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>App 2</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/app-2.jpg" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/product-2.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Product 2</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/product-2.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/branding-2.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Branding 2</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/branding-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/books-2.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Books 2</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/books-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/app-3.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>App 3</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/product-3.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Product 3</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/product-3.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/branding-3.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Branding 3</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/branding-3.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/books-3.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Books 3</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/books-3.jpg" title="Branding 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-          </div>-->
-
+          <?php endwhile; ?>
         </div>
 
       </div>
-
     </section><!-- /End Portfolio Section -->
 
     <!-- Services Section -->
     <section id="services" class="services">
       <div class="container">
 
-      <!-- Section Title -->
-      <div class="section-title">
-        <h2>REFEREES</h2>
-        <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. 
+        <!-- Section Title -->
+        <div class="section-title">
+          <h2>REFEREES</h2>
+          <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. 
         Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit 
         alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
-      </div> 
+        </div>
 
-      <div class="row">
-            <?php
-            // profile adl nama tabel di database[cite: 1]
-            $tampil_reference = mysqli_query($koneksi, "SELECT * FROM reference ORDER BY id_reperence DESC");
-            while ($re= mysqli_fetch_object($tampil_reference)):
-            ?>
+        <div class="row">
+          <?php
+          // profile adl nama tabel di database
+          $tampil_reference = mysqli_query($koneksi, "SELECT * FROM reference ORDER BY id_reperence DESC");
+          while ($re = mysqli_fetch_object($tampil_reference)):
+          ?>
 
             <div class="icon-box" data-aos="fade-up">
               <div class="icon"><a href="tel:<?php echo $re->phone ?>" target="_blank"><i class="bi bi-telephone-fill"></i></a></div>
               <!-- <h4 class="title"><a href="" ></a>lorensum</h4> -->
               <h4 class="title"><?php echo $re->nama ?></h4>
-              <p class="description"><?php echo $re->perusahaan ?></h4>
+              <p class="description"><?php echo $re->perusahaan ?></p>
             </div>
           <?php endwhile; ?>
-           <!--
+          <!--
           <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
             <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
             <div>
@@ -757,7 +1102,7 @@
               <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
             </div>
           </div>-->
-            </div>
+        </div>
 
       </div>
 
@@ -873,19 +1218,19 @@
       </div>
 
     </section> -->
-            <!--/Testimonials Section -->
+    <!--/Testimonials Section -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
-        <div class="container">
+      <div class="container">
 
-      <!-- Section Title -->
-      <div class="section-title">
-       <!-- <h2>Contact</h2>
+        <!-- Section Title -->
+        <div class="section-title">
+          <!-- <h2>Contact</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
-      </div><!-- End Section Title -->
+        </div><!-- End Section Title -->
 
-      <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-4">
 
@@ -963,9 +1308,9 @@
     </section><!-- /Contact Section -->
 
   </main> <!-- === END MAIN === -->
-    <!-- ==== FOOTER ===== -->
-  <footer id="footer" >
-   <div class="container">
+  <!-- ==== FOOTER ===== -->
+  <footer id="footer">
+    <div class="container">
       <div class="copyright text-center ">
         &copy; Curriculum Vitae <strong><span>Diki Agustian</span></strong>
       </div>
@@ -978,7 +1323,7 @@
       </div>
     </div>
 
-  </footer>  
+  </footer>
   <!-- end footer -->
 
   <!-- Scroll Top -->
@@ -999,7 +1344,7 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function(){
+    document.addEventListener('DOMContentLoaded', function() {
       var tooltips = new bootstrap.Tooltip(document.querySelector('.icon-with-tooltip'));
     })
   </script>

@@ -1,6 +1,10 @@
 <?php
 // Memanggil file koneksi database
 include "connection.php";
+session_start();
+if ($_SESSION['status'] !="login"){
+    header("location:login.php?pesan=belum_login");
+}
 
 // Mengambil semua data dari tabel `sekill`
 $select_skill = mysqli_query($koneksi, "SELECT * FROM sekill ORDER BY id_skill DESC");

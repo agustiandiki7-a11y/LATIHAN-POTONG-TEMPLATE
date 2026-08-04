@@ -1,5 +1,9 @@
 <?php
 include "connection.php";
+session_start();
+if ($_SESSION['status'] !="login"){
+    header("location:login.php?pesan=belum_login");
+}
 
 // Query disesuaikan dengan nama tabel di phpMyAdmin (`laguage`)
 $select_id_language = mysqli_query($koneksi, "

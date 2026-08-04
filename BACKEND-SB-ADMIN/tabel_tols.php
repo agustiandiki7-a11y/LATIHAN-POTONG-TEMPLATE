@@ -1,6 +1,10 @@
 <?php
 // Memanggil file koneksi database
 include "connection.php";
+session_start();
+if ($_SESSION['status'] !="login"){
+    header("location:login.php?pesan=belum_login");
+}
 
 // Mengambil semua data dari tabel tols
 $select_tols = mysqli_query($koneksi, "SELECT * FROM tols ORDER BY id_tols DESC");

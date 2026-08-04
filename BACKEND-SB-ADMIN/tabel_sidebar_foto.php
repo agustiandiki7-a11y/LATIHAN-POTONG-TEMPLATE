@@ -5,6 +5,10 @@
 // Memanggil file koneksi database
 // Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
+session_start();
+if ($_SESSION['status'] !="login"){
+    header("location:login.php?pesan=belum_login");
+}
 
 // Mengambil semua data dari tabel sidebar_foto
 // Query SELECT mengambil data dari tabel `sidebar_foto`. Hasilnya dipakai untuk mengisi tabel HTML atau form update.

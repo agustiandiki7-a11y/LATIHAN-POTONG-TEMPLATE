@@ -1,5 +1,9 @@
 <?php
 include "connection.php";
+session_start();
+if ($_SESSION['status'] !="login"){
+    header("location:login.php?pesan=belum_login");
+}
 
 // Menghubungkan file dengan database profile-cv.
 

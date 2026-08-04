@@ -4,6 +4,10 @@
 
 // Menghubungkan halaman dengan connection.php agar variabel $koneksi dapat digunakan untuk mengakses database.
 include "connection.php";
+session_start();
+if ($_SESSION['status'] !="login"){
+    header("location:login.php?pesan=belum_login");
+}
 
 $select_education = mysqli_query($koneksi, "
     SELECT * FROM education

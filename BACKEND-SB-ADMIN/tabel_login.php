@@ -1,5 +1,9 @@
 <?php
 include "connection.php";
+session_start();
+if ($_SESSION['status'] !="login"){
+    header("location:login.php?pesan=belum_login");
+}
 
 $select_login = mysqli_query($koneksi, "SELECT * FROM login ORDER BY id_login DESC");
 if (!$select_login) { 

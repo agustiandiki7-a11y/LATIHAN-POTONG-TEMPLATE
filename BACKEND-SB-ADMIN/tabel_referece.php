@@ -1,6 +1,10 @@
 <?php
 // Memanggil file koneksi database
 include "connection.php";
+session_start();
+if ($_SESSION['status'] !="login"){
+    header("location:login.php?pesan=belum_login");
+}
 
 // Mengambil semua data dari tabel reference sesuai nama kolom id_reference
 // Menggunakan id_reperence (pake p) sesuai nama kolom di phpMyAdmin kamu

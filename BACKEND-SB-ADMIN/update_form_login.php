@@ -37,8 +37,8 @@ $data = mysqli_fetch_object($query);
                         <input type="hidden" name="id_login" value="<?php echo $data->id_login; ?>">
 
                         <div class="form-group mb-4">
-                            <label class="text-secondary">Username</label>
-                            <input type="text" name="username" class="form-control" value="<?php echo htmlspecialchars($data->username); ?>" required>
+                            <label class="text-secondary">email</label>
+                            <input type="text" name="email" class="form-control" value="<?php echo htmlspecialchars($data->email); ?>" required>
                         </div>
 
                         <div class="form-group mb-4">

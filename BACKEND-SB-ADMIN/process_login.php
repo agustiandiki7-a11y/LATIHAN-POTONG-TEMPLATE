@@ -5,17 +5,28 @@ session_start();
 // 2. Memanggil koneksi database
 include "connection.php";
 
-// 3. Mengambil data dari form login
-$username = $_POST['username'];
-$password = $_POST['password'];
+// 3. Mengambil data dari form login dengan pengecekan isset agar tidak error undefined key
+$email = isset($_POST['email']) ? $_POST['email'] : '';
+$password = isset($_POST['password']) ? $_POST['password'] : '';
+
+// Jika form dikosongkan/diakses langsung, kembalikan ke halaman login
+if (empty($email) || empty($password)) {
+    header("Location: login.php?pesan=kosong");
+    exit();
+}
 
 // 4. Mencegah SQL Injection
-$username = mysqli_real_escape_string($koneksi, $username);
+$email = mysqli_real_escape_string($koneksi, $email);
 $password = mysqli_real_escape_string($koneksi, $password);
 
-// 5. Query mengecek data ke tabel 'loginn'
-$query = mysqli_query($koneksi, "SELECT * FROM loginn WHERE username = '$username' AND password = '$password'");
-$cek   = mysqli_num_rows($query);
+// 5. Query mengecek data ke tabel (Diubah dari 'loginn' menjadi 'login')
+$query = mysqli_query($koneksi, "SELECT * FROM login WHERE email = '$email' AND password = '$password'");
+
+if (!$query) {
+    die("Query Error: " . mysqli_error($koneksi));
+}
+
+$cek = mysqli_num_rows($query);
 
 // 6. Validasi jika data ditemukan
 if ($cek > 0) {
@@ -23,8 +34,8 @@ if ($cek > 0) {
 
     // Simpan data user ke session
     $_SESSION['id_login'] = $data->id_login;
-    $_SESSION['username'] = $data->username;
-    $_SESSION['status']   = "login";
+    $_SESSION['email'] = $data->email;
+    $_SESSION['status'] = "login";
 
     // Redirect ke halaman utama / tabel skill
     header("Location: tabel_skill.php");

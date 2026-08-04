@@ -7,11 +7,11 @@ include "connection.php";
 
 // menerima id_portofolio dari tombol Delete
 // Menerima ID unik portofolio yang dikirim melalui URL, biasanya dari tombol Update atau Delete pada halaman tabel.
-$id_portofolio = $_GET['id_portofolio'];
+$id_portofolio = $_GET['id_portfolio'];
 
 // menghapus data
 // Query DELETE menghapus satu data dari tabel `portofolio` berdasarkan ID yang dikirim tombol Delete.
-$delete = mysqli_query($koneksi, "DELETE FROM portofolio WHERE id_portofolio='$id_portofolio'");
+$delete = mysqli_query($koneksi, "DELETE FROM portfolio WHERE id_portfolio='$id_portfolio'");
 
 // kembali ke halaman tabel
 if ($delete) {
