@@ -4,64 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday! 💖</title>
+    <title>Happy Birthday To You ✨</title>
 
     <!-- CSS Frameworks & Fonts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
     <style>
          :root {
-            --bg-color: #fff0f3;
-            --text-color: #5d4037;
-            --accent-pink: #ff80ab;
-            --accent-purple: #ea80fc;
-            --card-bg: rgba(255, 255, 255, 0.85);
+            --sunset-dark: #2c163a;
+            --sunset-gradient: linear-gradient(135deg, #2c163a 0%, #4a2d59 50%, #7d4e7d 100%);
+            --warm-gold: #f3c68f;
+            --soft-cream: #fff5eb;
+            --card-glass: rgba(255, 255, 255, 0.1);
         }
         
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Quicksand', sans-serif;
+            background: var(--sunset-gradient);
+            color: var(--soft-cream);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
             margin: 0;
+            min-height: 100vh;
         }
-        /* Loading Screen Super Cepat */
+        /* Loading Screen Kilat */
         
         #loading-screen {
             position: fixed;
             inset: 0;
-            background: var(--bg-color);
+            background: var(--sunset-dark);
             z-index: 9999;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
+        /* Canvas Kilau Cahaya Senja */
         
-        #star-canvas {
+        #glow-canvas {
             position: fixed;
             top: 0;
             left: 0;
             z-index: -1;
-            opacity: 0.5;
+        }
+        /* Glass Card Mewah */
+        
+        .glass-luxury {
+            background: var(--card-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(243, 198, 143, 0.3);
+            border-radius: 24px;
+            padding: 45px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
         
-        .cute-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
-        }
-        
-        .cute-card:hover {
+        .glass-luxury:hover {
             transform: translateY(-5px);
+            border-color: var(--warm-gold);
         }
         
         .full-page {
@@ -73,45 +77,47 @@
             text-align: center;
         }
         
-        .title-font {
-            font-family: 'Dancing Script', cursive;
-            color: var(--accent-pink);
-            font-size: 4rem !important;
-            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
+        .cursive-title {
+            font-family: 'Great Vibes', cursive;
+            color: var(--warm-gold);
+            font-size: 5rem !important;
+            text-shadow: 0 2px 15px rgba(243, 198, 143, 0.4);
         }
         
-        .btn-cute {
-            background: linear-gradient(45deg, var(--accent-pink), #ff9ec0);
-            color: white;
-            font-weight: 600;
-            padding: 15px 40px;
+        .btn-sunset {
+            background: linear-gradient(45deg, #f3c68f, #e0a96d);
+            color: #2c163a;
+            font-weight: 700;
+            padding: 15px 45px;
             border-radius: 50px;
             border: none;
             transition: all 0.3s ease;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(255, 128, 171, 0.4);
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(243, 198, 143, 0.4);
         }
         
-        .btn-cute:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 128, 171, 0.6);
-            color: white;
+        .btn-sunset:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(243, 198, 143, 0.6);
+            background: #fff5eb;
+            color: #2c163a;
         }
         
-        .btn-outline-cute {
+        .btn-outline-sunset {
             background: transparent;
-            border: 2px solid var(--accent-pink);
-            color: var(--accent-pink);
+            border: 2px solid var(--warm-gold);
+            color: var(--warm-gold);
             border-radius: 50px;
-            padding: 8px 20px;
-            font-size: 0.9rem;
+            padding: 8px 25px;
             transition: 0.3s;
         }
         
-        .btn-outline-cute:hover {
-            background: var(--accent-pink);
-            color: white;
+        .btn-outline-sunset:hover {
+            background: var(--warm-gold);
+            color: #2c163a;
         }
+        /* Music Control */
         
         #music-control {
             position: fixed;
@@ -119,22 +125,25 @@
             right: 30px;
             z-index: 1000;
             cursor: pointer;
-            background: white;
+            background: var(--card-glass);
+            border: 1px solid var(--warm-gold);
             width: 55px;
             height: 55px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            color: var(--accent-pink);
+            color: var(--warm-gold);
+            backdrop-filter: blur(10px);
             transition: 0.3s;
-            border: 2px solid #ffebee;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         #music-control:hover {
-            transform: rotate(15deg) scale(1.1);
+            transform: scale(1.1) rotate(10deg);
+            background: rgba(243, 198, 143, 0.2);
         }
+        /* Swiper Galeri Mewah */
         
         .swiper {
             width: 320px;
@@ -142,16 +151,15 @@
         }
         
         .swiper-slide {
-            background-position: center;
-            background-size: cover;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(243, 198, 143, 0.2);
             border-radius: 20px;
-            background: white;
-            padding: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            padding: 12px;
+            backdrop-filter: blur(10px);
         }
         
         .swiper-slide img {
-            border-radius: 15px;
+            border-radius: 14px;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -160,41 +168,26 @@
         .gift-container {
             cursor: pointer;
             display: inline-block;
-            transition: 0.3s;
+            transition: 0.4s ease;
         }
         
         .gift-container:hover {
-            animation: wiggle 0.5s ease infinite;
-        }
-        
-        @keyframes wiggle {
-            0%,
-            100% {
-                transform: rotate(-3deg);
-            }
-            50% {
-                transform: rotate(3deg);
-            }
+            transform: scale(1.15) rotate(5deg);
         }
         
         .cursor {
-            width: 12px;
-            height: 12px;
-            background-color: var(--accent-pink);
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--warm-gold);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            box-shadow: 0 0 10px var(--accent-pink);
-            transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+            transition: transform 0.1s ease;
         }
         
         html {
             scroll-behavior: smooth;
-        }
-        
-        .text-accent-pink {
-            color: var(--accent-pink);
         }
     </style>
 </head>
@@ -204,21 +197,21 @@
     <!-- Custom Cursor -->
     <div class="cursor d-none d-md-block"></div>
 
-    <!-- Loading Screen (Kilat) -->
+    <!-- Loading Screen Kilat -->
     <div id="loading-screen">
-        <div class="spinner-grow" style="color: var(--accent-pink); width: 2.5rem; height: 2.5rem;" role="status"></div>
-        <h5 class="mt-3 fw-semibold" style="color: var(--accent-pink);">Hai kesayangan... ✨</h5>
+        <div class="spinner-border mb-3" style="color: var(--warm-gold);" role="status"></div>
+        <h5 style="color: var(--warm-gold); font-weight: 300; letter-spacing: 1px;">Menyusun lembaran cerita baru...</h5>
     </div>
 
-    <!-- Background Stars -->
-    <canvas id="star-canvas"></canvas>
+    <!-- Background Glow Canvas -->
+    <canvas id="glow-canvas"></canvas>
 
     <!-- Music Player -->
     <audio id="bg-music" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-ukulele.mp3" type="audio/mpeg">
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
     </audio>
     <div id="music-control" title="Putar Musik">
-        <i class="fas fa-heart"></i>
+        <i class="fas fa-music"></i>
     </div>
 
     <!-- Main Content -->
@@ -226,21 +219,22 @@
 
         <!-- Halaman 1: Welcome -->
         <section class="full-page" id="welcome">
-            <div data-aos="fade-up" data-aos-duration="1000">
-                <h1 class="mb-4 title-font">Happy Birthday, <span id="nama-penerima">Sayang</span>! ✨</h1>
-                <p class="lead mb-5 px-3" style="max-width: 600px; margin: 0 auto;">Selamat datang di ruang kecil yang penuh cinta ini. Aku harap harimu seindah senyummu. 💖</p>
-                <button class="btn-cute" onclick="scrollToSection('surat')">Lihat Kejutan Pertama 🎁</button>
+            <div data-aos="zoom-in" data-aos-duration="1200">
+                <h1 class="mb-2 cursive-title">Selamat Ulang Tahun</h1>
+                <h3 class="fw-bold mb-4" style="color: var(--warm-gold); letter-spacing: 3px;">UNTUK SESEORANG YANG SPESIAL</h3>
+                <p class="lead mb-5" style="color: rgba(255, 245, 235, 0.8);">Sengaja kubuatkan halaman khusus ini untuk merayakan hari bertambahnya usiamu. 🌅✨</p>
+                <button class="btn-sunset" onclick="scrollToSection('surat')">Buka Pesan Utama 💌</button>
             </div>
         </section>
 
         <!-- Halaman 2: Surat (Typed.js) -->
         <section class="full-page" id="surat">
             <div class="container">
-                <div class="cute-card shadow-lg" style="max-width: 700px; margin: 0 auto;">
-                    <h2 class="mb-4 title-font text-start" style="font-size: 2.5rem !important;">Untuk Kesayanganku...</h2>
-                    <div id="typed-text" class="fs-5 text-start" style="line-height: 1.6; min-height: 150px;"></div>
+                <div class="glass-luxury" style="max-width: 750px; margin: 0 auto;">
+                    <h2 class="mb-4 cursive-title" style="font-size: 3.5rem !important;">Catatan Hari Ini...</h2>
+                    <div id="typed-text" class="fs-5 text-start" style="line-height: 1.8; min-height: 150px; color: var(--soft-cream);"></div>
                     <div class="text-end mt-4">
-                        <button class="btn-outline-cute" onclick="scrollToSection('galeri')">Lanjut Ke Kenangan Kita 👇</button>
+                        <button class="btn-outline-sunset" onclick="scrollToSection('galeri')">Lihat Galeri Kenangan 🎞️</button>
                     </div>
                 </div>
             </div>
@@ -249,32 +243,34 @@
         <!-- Halaman 3: Galeri (Swiper) -->
         <section class="full-page" id="galeri">
             <div class="container w-100">
-                <h2 class="mb-5 title-font">Koleksi Momen Manis Kita 📸</h2>
+                <h2 class="mb-5 cursive-title">Jejak Waktu & Memori</h2>
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="https://placedog.net/500/600?random=1" alt="Memori 1"></div>
-                        <div class="swiper-slide"><img src="https://placedog.net/500/600?random=2" alt="Memori 2"></div>
-                        <div class="swiper-slide"><img src="https://placedog.net/500/600?random=3" alt="Memori 3"></div>
-                        <div class="swiper-slide"><img src="https://placedog.net/500/600?random=4" alt="Memori 4"></div>
-                        <div class="swiper-slide"><img src="https://placedog.net/500/600?random=5" alt="Memori 5"></div>
+                        <!-- Ganti link foto dengan dokumentasi kenangan kalian -->
+                        <div class="swiper-slide"><img src="https://picsum.photos/500/600?random=10" alt="Memori 1"></div>
+                        <div class="swiper-slide"><img src="https://picsum.photos/500/600?random=20" alt="Memori 2"></div>
+                        <div class="swiper-slide"><img src="https://picsum.photos/500/600?random=30" alt="Memori 3"></div>
+                        <div class="swiper-slide"><img src="https://picsum.photos/500/600?random=40" alt="Memori 4"></div>
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-                <button class="btn-cute mt-5" onclick="scrollToSection('gift')">Hadiah Utama 🎀</button>
+                <div class="mt-5">
+                    <button class="btn-sunset" onclick="scrollToSection('gift')">Ambil Kejutan Kotak 🎁</button>
+                </div>
             </div>
         </section>
 
         <!-- Halaman 4: Gift Box -->
         <section class="full-page" id="gift">
             <div class="container text-center">
-                <h2 class="mb-5 title-font">Klik Kotaknya Yuk! 👉</h2>
+                <h2 class="mb-5 cursive-title">Ada Hadiah Kecil Buat Kamu</h2>
                 <div class="gift-container" id="gift-box">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3132/3132048.png" width="180" id="gift-img" alt="Gift Box">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3132/3132048.png" width="160" id="gift-img" alt="Gift Box">
                 </div>
                 <div id="gift-message" class="mt-4" style="display:none;">
-                    <div class="cute-card" style="max-width: 400px; margin: 0 auto;">
-                        <h3 class="text-accent-pink fw-bold">Tiket Jalan-jalan Gratis! 🎫</h3>
-                        <p class="mt-2">Berlaku seumur hidup ditemani aku. 😉</p>
+                    <div class="glass-luxury" style="max-width: 420px; margin: 0 auto;">
+                        <h3 style="color: var(--warm-gold); font-family: 'Plus Jakarta Sans'; font-weight: 700;">Kupon Permintaan Bebas 🎟️</h3>
+                        <p class="mt-2 mb-0" style="color: var(--soft-cream);">Bisa ditukar dengan makanan enak atau jalan-jalan kapan pun kamu mau tanpa penolakan! 😉</p>
                     </div>
                 </div>
             </div>
@@ -283,10 +279,11 @@
         <!-- Halaman 5: Ending -->
         <section class="full-page" id="ending">
             <div class="container">
-                <h1 class="display-3 fw-bold title-font" style="font-size: 5rem !important;">I Love You!</h1>
-                <p class="lead mt-3">Semoga umur barumu berkah, dan semua impianmu tercapai. Aamiin. 💖</p>
-                <p class="mt-4">Tekan tombol di bawah buat perayaan kecil!</p>
-                <button class="btn-cute mt-3" onclick="celebrate()">🎉 Rayakan! 🎉</button>
+                <div class="glass-luxury" style="max-width: 700px; margin: 0 auto;">
+                    <h1 class="display-4 fw-bold cursive-title mb-3">Make a Big Wish</h1>
+                    <p class="lead" style="color: rgba(255, 245, 235, 0.9);">Semoga bertambahnya usia ini membawa kedamaian, rezeki yang berkah, dan kelancaran di setiap hal yang sedang kamu perjuangkan. Happy birthday! 🥂🌟</p>
+                    <button class="btn-sunset mt-4" onclick="celebrate()">🎉 Mulai Perayaan Penuh ✨</button>
+                </div>
             </div>
         </section>
 
@@ -302,7 +299,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
-        // 1. Loading Kilat (Langsung masuk dalam 0.4 detik)
+        // 1. Loading Kilat (0.4 detik)
         window.addEventListener('load', () => {
             setTimeout(() => {
                 $('#loading-screen').fadeOut(300, () => {
@@ -315,35 +312,40 @@
             }, 400);
         });
 
-        // 2. Star Background Effect
-        const canvas = document.getElementById('star-canvas');
+        // 2. Efek Kilau Cahaya (Glow Particles) di Background
+        const canvas = document.getElementById('glow-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let stars = [];
-        for (let i = 0; i < 150; i++) {
-            stars.push({
+        let particles = [];
+        for (let i = 0; i < 70; i++) {
+            particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                size: Math.random() * 2,
-                speed: Math.random() * 0.3
+                size: Math.random() * 3,
+                speedY: Math.random() * 0.5 - 0.25,
+                opacity: Math.random()
             });
         }
 
-        function drawStars() {
+        function drawGlow() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#ffb6c1';
-            stars.forEach(s => {
+            particles.forEach(p => {
+                ctx.fillStyle = `rgba(243, 198, 143, ${p.opacity})`;
                 ctx.beginPath();
-                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 ctx.fill();
-                s.y += s.speed;
-                if (s.y > canvas.height) s.y = 0;
+                p.y += p.speedY;
+                p.opacity += (Math.random() * 0.02 - 0.01);
+                if (p.opacity < 0) p.opacity = 0;
+                if (p.opacity > 1) p.opacity = 1;
+                if (p.y > canvas.height) p.y = 0;
+                if (p.y < 0) p.y = canvas.height;
             });
-            requestAnimationFrame(drawStars);
+            requestAnimationFrame(drawGlow);
         }
-        drawStars();
+        drawGlow();
 
         // 3. Music Control
         const music = document.getElementById('bg-music');
@@ -360,14 +362,14 @@
             }
         });
 
-        // 4. Typed.js (Surat)
+        // 4. Typed.js (Surat - Konten Diubah Total)
         function initTyped() {
             new Typed('#typed-text', {
                 strings: [
-                    "Di hari yang spesial ini, aku ingin mengucapkannya lewat baris kode dan cahaya...",
-                    "Kamu adalah alasan di balik senyumku setiap hari.",
-                    "Terima kasih telah menjadi bagian terindah dalam hidupku.",
-                    "Selamat ulang tahun, sayang. Aku mencintaimu selamanya. ❤️"
+                    "Halo! Waktu berjalan begitu cepat, dan hari ini lembaran baru usiamu resmi dibuka...",
+                    "Terima kasih sudah melangkah sejauh ini, melewati banyak hal hebat dengan ketulusan hatimu.",
+                    "Semoga sisa tahun ke depan membawa kejutan-kejutan baik dan senyuman yang tidak pernah putus.",
+                    "Teruslah bersinar dengan caramu sendiri. Selamat ulang tahun ya! 🌅🥂"
                 ],
                 typeSpeed: 40,
                 backSpeed: 20,
@@ -403,10 +405,11 @@
                 $('#gift-message').fadeIn();
                 confetti({
                     particleCount: 150,
-                    spread: 70,
+                    spread: 80,
                     origin: {
                         y: 0.6
-                    }
+                    },
+                    colors: ['#f3c68f', '#fff5eb', '#7d4e7d']
                 });
             }, 600);
         });
@@ -439,7 +442,8 @@
                     origin: {
                         x: Math.random(),
                         y: Math.random() - 0.2
-                    }
+                    },
+                    colors: ['#f3c68f', '#fff5eb', '#e0a96d']
                 }));
             }, 250);
         }

@@ -629,10 +629,10 @@
       <ul>
         <li><a href="#hero" class="nav-link scrollto"><i class="bi bi-house"></i> <span>Home</span></a></li>
         <li><a href="#about" class="nav-link scrollto"><i class="bi bi-person"></i> <span>Overview</span></a></li>
-        <li><a href="#skills" class="nav-link scrollto"><i class="bi bi-file-earmark-text"></i> <span>Resume</span></a></li>
+        <li><a href="#skills" class="nav-link scrollto"><i class="bi bi-file-earmark-text"></i> <span>proficiency </span></a></li>
+        <li><a href="#resume" class="nav-link scrollto"><i class="bi bi-book"></i> <span>Education</span></a></li>
         <li><a href="#portfolio" class="nav-link scrollto"><i class="bi bi-book"></i> <span>Portfolio</span></a></li>
         <li><a href="#services" class="nav-link scrollto"><i class="bi bi-server"></i> <span>Referees</span></a></li>
-        <li><a href="#contact" class="nav-link scrollto"><i class="bi bi-envelope"></i> <span>Contact</span></a></li>
       </ul>
     </nav>
   </header>
@@ -826,23 +826,22 @@
           </div>
         </div>
         <div class="section-title mt-4">
-          <h6> LANGUAGE PROFICIENTY </h6>
+          <h6> LANGUAGE PROFICIENCY </h6>
           <?php
-          // profile adl nama tabel di database
           $tampil_language = mysqli_query($koneksi, "SELECT * FROM language ORDER BY id_language DESC ");
           while ($l = mysqli_fetch_object($tampil_language)):
           ?>
             <div class="row">
               <div class="col">
                 <h6 class="skill" style="color:grey">
-                  <?php echo $l->bahasa ?> </h6>
+                  <?php echo $l->bahasa; ?>
+                </h6>
               </div>
               <div class="col">
-
-                <img src="../BACKEND-SB-ADMIN/fotobende/indonesia-flag-png-5.jpg <?php echo $l->flag; ?>" alt="" class="val mb-3" width="40px">
+                <!-- Coba ganti path foldernya sesuai letak folder gambar yang sebenarnya -->
+                <img src="../BACKEND-SB-ADMIN/fotobende/indonesia-flag-png-5.jpg ?php echo $l->flag; ?>" alt="" class="val mb-3" width="40px">
               </div>
             </div>
-
           <?php endwhile; ?>
         </div>
         <div class="section-title mt-4">
@@ -928,8 +927,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Resume</h2>
-          <p>Berikut adalah latar belakang pendidikan dan pengalaman yang saya miliki.</p>
+
         </div>
 
         <div class="row">
